@@ -63,8 +63,8 @@ class MaintenanceAssignmentResource extends Resource
                                     })
                                     ->toArray();
                             }),
-                        Select::make('maintenance_status')
-                            ->label('Status Maintenance')
+                        Select::make('maintenance_type')
+                            ->label('Tipe Maintenance')
                             ->options([
                                 'monthly' => 'Maintenance Bulanan',
                                 'full' => 'Full Maintenance',

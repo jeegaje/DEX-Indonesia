@@ -30,7 +30,7 @@ class CreateMaintenanceAssignment extends CreateRecord
             $maintenanceAssignment = MaintenanceAssignment::create([
                 'user_id' => $user->id,
                 'pump_id' => $pump['pump_id'],
-                'maintenance_status' =>  $pump['maintenance_status']
+                'maintenance_type' =>  $pump['maintenance_type']
             ]);
         }    
 
