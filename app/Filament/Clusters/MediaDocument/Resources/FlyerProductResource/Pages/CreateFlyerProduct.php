@@ -9,4 +9,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateFlyerProduct extends CreateRecord
 {
     protected static string $resource = FlyerProductResource::class;
+    
+    protected static ?string $title = 'Create Flyer Product';
 }

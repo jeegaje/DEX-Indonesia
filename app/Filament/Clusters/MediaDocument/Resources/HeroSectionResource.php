@@ -32,7 +32,19 @@ class HeroSectionResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('type')
+                    ->label('Tipe')
+                    ->default('Hero Section')
+                    ->readonly()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
+                Forms\Components\FileUpload::make('path')
+                    ->label('Banner Hero Section')
+                    ->image()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
             ]);
     }
 

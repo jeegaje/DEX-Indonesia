@@ -32,7 +32,19 @@ class CompanyProfileResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('type')
+                    ->label('Tipe')
+                    ->default('Company Profile')
+                    ->readonly()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
+                Forms\Components\FileUpload::make('path')
+                    ->label('Banner Company Profile')
+                    ->image()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
             ]);
     }
 
