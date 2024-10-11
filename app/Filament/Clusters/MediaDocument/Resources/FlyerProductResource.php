@@ -32,7 +32,20 @@ class FlyerProductResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('type')
+                    ->label('Tipe')
+                    ->default('Flyer Product')
+                    ->readonly()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
+                Forms\Components\FileUpload::make('path')
+                    ->label('Banner Flyer Product')
+                    ->image()
+                    ->columnSpan([
+                        'sm' => 2,
+                    ]),
+
             ]);
     }
 
