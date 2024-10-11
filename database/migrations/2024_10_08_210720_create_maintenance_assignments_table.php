@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maintenance_assignments', function (Blueprint $table) {
             $table->id();
-            $table->string('maintenance_status');
+            $table->string('maintenance_type');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('pump_id');
 
