@@ -13,7 +13,9 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Enums\Alignment;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -106,6 +108,34 @@ class MaintenanceAssignmentResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('customAction')
+                    ->label('Generate Link') // Tulisan untuk tombol action
+                    ->modalHeading('Generate Link') // Tulisan custom di bagian heading modal
+                    ->modalDescription('Link Telah Berhasil digenerate, silahkan copy link di bawah ini') // Tulisan kustom di dalam modal
+                    ->form(function (Form $form) {
+                        return $form
+                            ->schema([
+                                Forms\Components\TextInput::make('generateLink')
+                                    ->hiddenLabel()
+                                    ->default(function (MaintenanceAssignment $maintenanceAssignment) {
+                                        return url('') . 'maintenance-input?token=' . $maintenanceAssignment->token;
+                                    }),
+
+                                Forms\Components\Actions::make([
+                                    Forms\Components\Actions\Action::make('Copy Link')
+                                        ->action(function (Forms\Get $get, Forms\Set $set) {
+                                            $set('excerpt', str($get('content'))->words(45, end: ''));
+                                        })
+                                    ])->fullWidth()->extraAttributes(['id' => 'generated-link'])
+                                ]);
+                    })
+                    ->modalSubmitAction(false)            //Remove Submit Button
+                    ->modalCancelAction(false)
+                    ->modalAlignment(Alignment::Center)
+                    ->color('primary') // Warna tombol, bisa diubah sesuai keinginan
+                    ->icon('heroicon-o-check')
+                    ->button(),
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
