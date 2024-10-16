@@ -10,6 +10,8 @@ class ListMaintenanceAssignments extends ListRecords
 {
     protected static string $resource = MaintenanceAssignmentResource::class;
 
+    protected static ?string $title = 'Penugasan Maintenance';
+
     protected function getHeaderActions(): array
     {
         return [

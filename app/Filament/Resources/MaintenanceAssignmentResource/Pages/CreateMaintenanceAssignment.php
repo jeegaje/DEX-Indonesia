@@ -8,6 +8,7 @@ use App\Models\User;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CreateMaintenanceAssignment extends CreateRecord
 {
@@ -30,7 +31,8 @@ class CreateMaintenanceAssignment extends CreateRecord
             $maintenanceAssignment = MaintenanceAssignment::create([
                 'user_id' => $user->id,
                 'pump_id' => $pump['pump_id'],
-                'maintenance_type' =>  $pump['maintenance_type']
+                'maintenance_type' =>  $pump['maintenance_type'],
+                'token' =>  Str::random(32)
             ]);
         }    
 
