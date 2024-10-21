@@ -16,3 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/maintenance-input', function () {
     return view('welcome');
 });
+
+Route::get('/', function () {
+    return view('company-profile.homepage');
+});
+
+Route::get('/about', function () {
+    return view('company-profile.about');
+});
+
+Route::get('/product', function () {
+    return view('company-profile.product');
+});
+
+Route::get('/articles-and-events', function () {
+    return view('company-profile.articles-and-events');
+});
