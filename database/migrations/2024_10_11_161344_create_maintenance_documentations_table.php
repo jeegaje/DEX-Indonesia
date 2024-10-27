@@ -13,17 +13,20 @@ return new class extends Migration
     {
         Schema::create('maintenance_documentations', function (Blueprint $table) {
             $table->id();
-            $table->string('tightening_panel_bolts');
-            $table->string('cleaning_panel_with_brush');
-            $table->string('panel_condition_after_cleaning');
-            $table->string('cleaning_panel_with_cloth');
-            $table->string('cleaning_panel_with_vacuum');
-            $table->string('output_flow_45_hz');
-            $table->string('output_flow_40_hz');
-            $table->string('output_flow_50_hz');
-            $table->string('junction_box_after_cleaning');
-            $table->string('pump_cleaning');
-            $table->string('water_level');
+            $table->string('tightening_panel_bolts')->nullable();
+            $table->string('cleaning_panel_with_cloth')->nullable();
+            $table->string('cleaning_panel_with_brush')->nullable();
+            $table->string('cleaning_panel_with_vacuum')->nullable();
+            $table->string('panel_condition_after_cleaning')->nullable();
+            $table->string('junction_box_after_cleaning')->nullable();
+            $table->string('water_level')->nullable();
+            $table->string('pump_cleaning')->nullable();
+            $table->string('lifting_pump')->nullable();
+            $table->string('cleaning_pump_body')->nullable();
+            $table->string('polishing_wearing_ring')->nullable();
+            $table->string('replacing_pump_oil')->nullable();
+            $table->string('tightening_pump_bolts')->nullable();
+            $table->string('cleaning_pump_impeller')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

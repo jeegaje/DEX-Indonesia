@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('maintenance_lvmdps', function (Blueprint $table) {
             $table->id();
-            $table->string('indicator_light_rst');
-            $table->string('voltage_balance');
-            $table->integer('frequency');
-            $table->integer('v1');
-            $table->integer('v2');
-            $table->integer('v3');
+            $table->string('indicator_light_rst')->nullable();
+            $table->string('indicator_light_rst_detail')->nullable();
+            $table->string('voltage_balance')->nullable();
+            $table->string('voltage_balance_detail')->nullable();
+            $table->integer('frequency')->nullable();
+            $table->integer('v1')->nullable();
+            $table->integer('v2')->nullable();
+            $table->integer('v3')->nullable();
+            $table->string('power')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

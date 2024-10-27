@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('location');
             $table->string('serial_number')->unique();
-            $table->string('flowa_and_head');
+            $table->string('flow_and_head');
             $table->integer('unit');
             $table->integer('number_of_inspection');
             $table->decimal('running_hours_total', 9, 2);

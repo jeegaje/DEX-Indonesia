@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('maintenance_junction_boxes', function (Blueprint $table) {
             $table->id();
-            $table->string('cable_bolt_connection');
-            $table->string('cable_condition');
-            $table->string('connection_neatness');
-            $table->integer('humidity_inside_box');
-            $table->integer('temperature_inside_box');
+            $table->string('cable_bolt_connection')->nullable();
+            $table->string('cable_condition')->nullable();
+            $table->string('connection_neatness')->nullable();
+            $table->integer('humidity_inside_box')->nullable();
+            $table->integer('temperature_inside_box')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
