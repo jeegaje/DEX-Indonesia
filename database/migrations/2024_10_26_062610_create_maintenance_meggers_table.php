@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maintenance_panels', function (Blueprint $table) {
+        Schema::create('maintenance_meggers', function (Blueprint $table) {
             $table->id();
-            $table->string('cable_bolt_connection')->nullable();
-            $table->string('cable_condition')->nullable();
-            $table->string('connection_neatness')->nullable();
-            $table->integer('humidity_inside_panel')->nullable();
-            $table->integer('temperature_inside_panel')->nullable();
+            $table->string('technician')->nullable();
+            $table->string('location')->nullable();
+            $table->integer('unit')->nullable();
+            $table->string('serial_number')->nullable();
+            $table->decimal('running_hours', 9, 2)->nullable();
+            $table->string('date')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('maintenance_panels');
+        Schema::dropIfExists('maintenance_meggers');
     }
 };

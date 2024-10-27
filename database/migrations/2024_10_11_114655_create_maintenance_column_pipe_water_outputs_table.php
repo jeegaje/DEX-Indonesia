@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('maintenance_column_pipe_water_outputs', function (Blueprint $table) {
             $table->id();
-            $table->integer('water_ph_value_condition');
-            $table->string('column_pipe_condition');
-            $table->string('output_pipe_condition');
-            $table->string('valve_condition');
-            $table->string('flap_condition');
-            $table->string('water_output_condition');
+            $table->integer('water_ph_value_condition')->nullable();
+            $table->string('water_ph_value_condition_image_path')->nullable();
+            $table->string('column_pipe_condition')->nullable();
+            $table->string('output_pipe_condition')->nullable();
+            $table->string('valve_condition')->nullable();
+            $table->string('flap_condition')->nullable();
+            $table->string('water_output_condition')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

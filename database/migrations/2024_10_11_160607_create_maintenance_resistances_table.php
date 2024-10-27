@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('maintenance_resistances', function (Blueprint $table) {
             $table->id();
-            $table->integer('pe_pe');
-            $table->integer('u1_u2');
-            $table->integer('v1_v2');
-            $table->integer('w1_w2');
-            $table->string('pe_pe_image_path');
-            $table->string('u1_u2_image_path');
-            $table->string('v1_v2_image_path');
-            $table->string('w1_w2_image_path');
+            $table->integer('pe_pe')->nullable();
+            $table->integer('u1_u2')->nullable();
+            $table->integer('v1_v2')->nullable();
+            $table->integer('w1_w2')->nullable();
+            $table->string('pe_pe_image_path')->nullable();
+            $table->string('u1_u2_image_path')->nullable();
+            $table->string('v1_v2_image_path')->nullable();
+            $table->string('w1_w2_image_path')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

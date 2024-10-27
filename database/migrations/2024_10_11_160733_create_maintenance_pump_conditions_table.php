@@ -13,21 +13,21 @@ return new class extends Migration
     {
         Schema::create('maintenance_pump_conditions', function (Blueprint $table) {
             $table->id();
-            $table->string('pump_body');
-            $table->string('wearing_ring');
-            $table->string('pump_bolt');
-            $table->string('column_pipe_bolt');
-            $table->string('impeller');
-            $table->string('cable');
-            $table->string('pump_condition');
+            $table->string('pump_body')->nullable();
+            $table->string('wearing_ring')->nullable();
+            $table->string('pump_bolt')->nullable();
+            $table->string('column_pipe_bolt')->nullable();
+            $table->string('impeller')->nullable();
+            $table->string('cable')->nullable();
+            $table->string('pump_condition')->nullable();
 
-            $table->string('pump_body_note');
-            $table->string('wearing_ring_note');
-            $table->string('pump_bolt_note');
-            $table->string('column_pipe_bolt_note');
-            $table->string('impeller_note');
-            $table->string('cable_note');
-            $table->string('pump_condition_note');
+            $table->string('pump_body_note')->nullable();
+            $table->string('wearing_ring_note')->nullable();
+            $table->string('pump_bolt_note')->nullable();
+            $table->string('column_pipe_bolt_note')->nullable();
+            $table->string('impeller_note')->nullable();
+            $table->string('cable_note')->nullable();
+            $table->string('pump_condition_note')->nullable();
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
