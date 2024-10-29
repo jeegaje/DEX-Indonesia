@@ -33,7 +33,7 @@ class PumpResource extends Resource
                     ->label('No Seri Pompa')
                     ->numeric()
                     ->required(),
-                Forms\Components\TextInput::make('flowa_and_head')
+                Forms\Components\TextInput::make('flow_and_head')
                     ->label('Flow & Head')
                     ->required(),
                 Forms\Components\TextInput::make('unit')
@@ -64,7 +64,7 @@ class PumpResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('location')->searchable(),
                 Tables\Columns\TextColumn::make('serial_number')->searchable(),
-                Tables\Columns\TextColumn::make('flowa_and_head'),
+                Tables\Columns\TextColumn::make('flow_and_head'),
                 Tables\Columns\TextColumn::make('unit'),
                 Tables\Columns\TextColumn::make('number_of_inspection'),
                 Tables\Columns\TextColumn::make('running_hours_total'),
