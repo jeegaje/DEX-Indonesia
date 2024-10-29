@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('u2_pe_image_path')->nullable();
             $table->string('v2_pe_image_path')->nullable();
             $table->string('w2_pe_image_path')->nullable();
+            
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null');
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

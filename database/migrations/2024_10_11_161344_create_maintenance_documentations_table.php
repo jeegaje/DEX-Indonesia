@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('replacing_pump_oil')->nullable();
             $table->string('tightening_pump_bolts')->nullable();
             $table->string('cleaning_pump_impeller')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

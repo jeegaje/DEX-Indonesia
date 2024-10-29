@@ -137,6 +137,8 @@ class MaintenanceController extends Controller
                 $fileLocation_running_hours_monthly_image = $this->fileRelocated($request->pump_data_running_hours_monthly_image, 'maintenance/data-pump');
                 $maintenance_pump_data->running_hours_monthly_image = $fileLocation_running_hours_monthly_image;
             }
+
+            $maintenance_pump_data->status = 'waiting_approval';
             
             $maintenance_pump_data->save();
 
@@ -181,6 +183,8 @@ class MaintenanceController extends Controller
                 $maintenance_lvmdp->power = $request->lvmdp_power;
             }
 
+            $maintenance_lvmdp->status = 'waiting_approval';
+
             $maintenance_lvmdp->save();
 
 
@@ -208,6 +212,7 @@ class MaintenanceController extends Controller
                 $maintenance_junction_box->temperature_inside_box = $request->junction_box_temperature_inside_box;
             }
             
+            $maintenance_junction_box->status = 'waiting_approval';
 
             $maintenance_junction_box->save();
 
@@ -235,6 +240,7 @@ class MaintenanceController extends Controller
                 $maintenance_panel->temperature_inside_panel = $request->panel_temperature_inside_panel;
             }
             
+            $maintenance_panel->status = 'waiting_approval';
 
             $maintenance_panel->save();
 
@@ -294,7 +300,7 @@ class MaintenanceController extends Controller
                 $maintenance_panel_function->exhaust_fan = $request->panel_function_exhaust_fan;
             }
 
-            
+            $maintenance_panel_function->status = 'waiting_approval';
 
             $maintenance_panel_function->save();
 
@@ -654,6 +660,8 @@ class MaintenanceController extends Controller
                 $fileLocation_elektrikal_mekanikal_50_hz_terminal_temperature_image_path = $this->fileRelocated($request->elektrikal_mekanikal_50_hz_terminal_temperature_image_path, 'maintenance/electro-mechanical');
                 $maintenance_pelectro_mechanical->{"50_hz_terminal_temperature_image_path"} = $fileLocation_elektrikal_mekanikal_50_hz_terminal_temperature_image_path;
             }
+
+            $maintenance_pelectro_mechanical->status = 'waiting_approval';
             
             $maintenance_pelectro_mechanical->save();
 
@@ -692,7 +700,7 @@ class MaintenanceController extends Controller
                 $maintenance_column_pipe_water_output->water_output_condition = $request->pipe_column_water_output_water_output_condition;
             }
 
-            
+            $maintenance_column_pipe_water_output->status = 'waiting_approval';
             
             $maintenance_column_pipe_water_output->save();
 
@@ -798,7 +806,7 @@ class MaintenanceController extends Controller
                 $maintenance_sensor_test->pump_trip_vsd_sensor = $request->test_sensor_pump_trip_vsd_sensor;
             }
 
-            
+            $maintenance_sensor_test->status = 'waiting_approval';
             
             $maintenance_sensor_test->save();
 
@@ -831,7 +839,7 @@ class MaintenanceController extends Controller
                 $maintenance_megger->running_hours = $request->megger_running_hours;
             }
 
-            
+            $maintenance_megger->status = 'waiting_approval';
             
             $maintenance_megger->save();
 
@@ -918,7 +926,7 @@ class MaintenanceController extends Controller
                 $maintenance_insulation->w1_v2 = $request->insulation_w1_v2;
             }
 
-            
+            $maintenance_insulation->status = 'waiting_approval';
             
             $maintenance_insulation->save();
 
@@ -963,7 +971,7 @@ class MaintenanceController extends Controller
                 $maintenance_resistance->w1_w2_image_path = $fileLocation_resistance_w1_w2_image_path;
             }
 
-            
+            $maintenance_resistance->status = 'waiting_approval';
             
             $maintenance_resistance->save();
 
@@ -1028,7 +1036,7 @@ class MaintenanceController extends Controller
                 $maintenance_pump_condition->pump_condition = $request->pump_condition_pump_condition;
             }
 
-            
+            $maintenance_pump_condition->status = 'waiting_approval';
             
             $maintenance_pump_condition->save();
 
@@ -1097,7 +1105,7 @@ class MaintenanceController extends Controller
                 $maintenance_documentation->cleaning_pump_impeller = $fileLocation_documentation_cleaning_pump_impeller;
             }
 
-            
+            $maintenance_documentation->status = 'waiting_approval';
             
             $maintenance_documentation->save();
 

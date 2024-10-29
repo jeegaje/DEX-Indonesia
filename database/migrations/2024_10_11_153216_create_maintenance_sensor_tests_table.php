@@ -50,7 +50,8 @@ return new class extends Migration
             $table->string('pump_trip_voltage_sensor')->nullable();
             $table->string('pump_trip_vsd_sensor')->nullable();
 
-
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

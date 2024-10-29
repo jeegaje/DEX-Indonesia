@@ -22,7 +22,9 @@ return new class extends Migration
             $table->decimal('running_hours_total', 9, 2)->nullable();
             $table->decimal('running_hours_monthly', 9, 2)->nullable();
             $table->string('running_hours_total_image')->nullable();
-            $table->string('running_hours_monthly_image')->nullable();    
+            $table->string('running_hours_monthly_image')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

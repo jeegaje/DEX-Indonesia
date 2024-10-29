@@ -28,6 +28,8 @@ return new class extends Migration
             $table->string('impeller_note')->nullable();
             $table->string('cable_note')->nullable();
             $table->string('pump_condition_note')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

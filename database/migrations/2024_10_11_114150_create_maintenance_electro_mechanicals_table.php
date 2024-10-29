@@ -107,6 +107,9 @@ return new class extends Migration
             $table->string('45_hz_terminal_temperature_image_path')->nullable();
             $table->float('50_hz_terminal_temperature')->nullable();
             $table->string('50_hz_terminal_temperature_image_path')->nullable();
+
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
