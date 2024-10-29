@@ -118,7 +118,7 @@ class MaintenanceAssignmentResource extends Resource
                                 Forms\Components\TextInput::make('generateLink')
                                     ->hiddenLabel()
                                     ->default(function (MaintenanceAssignment $maintenanceAssignment) {
-                                        return url('') . 'maintenance-input?token=' . $maintenanceAssignment->token;
+                                        return url('') . '/maintenance/create?token=' . $maintenanceAssignment->token;
                                     }),
 
                                 Forms\Components\Actions::make([

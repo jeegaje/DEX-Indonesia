@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\FileUploadController as ControllersFileUploadController;
+use App\Http\Controllers\MaintenanceController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Features\SupportFileUploads\FileUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/maintenance-input', function () {
-    return view('welcome');
-});
+
+
+Route::get('/maintenance/create', [MaintenanceController::class, 'create'])->name('maintenance.create');
+Route::post('/maintenance/store', [MaintenanceController::class, 'store'])->name('maintenance.store');
+
+Route::post('/maintenance/store/upload', [MaintenanceController::class, 'testUpload'])->name('maintenance.upload');
+
 
 Route::get('/', function () {
     return view('company-profile.homepage');
@@ -32,3 +39,5 @@ Route::get('/product', function () {
 Route::get('/articles-and-events', function () {
     return view('company-profile.articles-and-events');
 });
+
+Route::post('/maintenance/uploads/process', [ControllersFileUploadController::class, 'process'])->name('uploads.process');
