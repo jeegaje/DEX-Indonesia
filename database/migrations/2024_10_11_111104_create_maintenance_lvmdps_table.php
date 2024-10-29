@@ -22,6 +22,8 @@ return new class extends Migration
             $table->integer('v2')->nullable();
             $table->integer('v3')->nullable();
             $table->string('power')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

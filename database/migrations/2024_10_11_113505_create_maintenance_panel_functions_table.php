@@ -26,6 +26,8 @@ return new class extends Migration
             $table->string('reset_button')->nullable();
             $table->string('emergency_button')->nullable();
             $table->string('exhaust_fan')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

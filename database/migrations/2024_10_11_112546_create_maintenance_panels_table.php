@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('connection_neatness')->nullable();
             $table->integer('humidity_inside_panel')->nullable();
             $table->integer('temperature_inside_panel')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

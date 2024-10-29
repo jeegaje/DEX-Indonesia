@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('u1_u2_image_path')->nullable();
             $table->string('v1_v2_image_path')->nullable();
             $table->string('w1_w2_image_path')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });

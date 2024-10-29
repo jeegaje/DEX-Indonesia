@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('serial_number')->nullable();
             $table->decimal('running_hours', 9, 2)->nullable();
             $table->string('date')->nullable();
+            $table->string('status')->nullable(); 
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('maintenance_id')->constrained('maintenances')->onDelete('cascade');
             $table->timestamps();
         });
