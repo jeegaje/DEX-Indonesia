@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('maintenance_type');
             $table->string('maintenance_status');
             $table->date('inspection_date');
+            $table->string('technician_note')->nullable();
+            $table->string('signature')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->timestamps();
         });
     }

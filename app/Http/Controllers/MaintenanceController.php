@@ -73,6 +73,13 @@ class MaintenanceController extends Controller
             $maintenance->maintenance_type = $maintenance_assignment->maintenance_type;
             $maintenance->maintenance_status = 'waiting_approval';
             $maintenance->inspection_date = Carbon::now(); 
+            if ($request->filled('maintenance_note')) {
+                $maintenance->technician_note = $request->maintenance_note;
+            }
+            if ($request->filled('maintenance_signature')) {
+                $fileLocation_maintenance_signature = $this->fileRelocated($request->maintenance_signature, 'maintenance/signature');
+                $maintenance->signature = $fileLocation_maintenance_signature;
+            }
             $maintenance->save();
 
 
