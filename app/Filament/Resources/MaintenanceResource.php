@@ -5,12 +5,14 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\MaintenanceResource\Pages;
 use App\Filament\Resources\MaintenanceResource\RelationManagers;
 use App\Models\Maintenance;
+use Filament\Actions\Action as ActionsAction;
 use Filament\Forms;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Fieldset;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Tabs\Tab;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Form;
 use Filament\Pages\Page;
 use Filament\Pages\SubNavigationPosition;
@@ -1780,11 +1782,11 @@ class MaintenanceResource extends Resource
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'waiting_approval' => 'danger',
-                        'approve' => 'success',
+                        'approved' => 'success',
                     })
                     ->formatStateUsing(fn(string $state): string => match ($state) {
                         'waiting_approval' => 'Belum Approve',
-                        'approve' => 'Approved',
+                        'approved' => 'Approved',
                         default => $state,
                     })
                     ->searchable(),
@@ -1794,6 +1796,44 @@ class MaintenanceResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\Action::make('technician_note')
+                        ->label('Catatan Teknisi')
+                        ->modalHeading('Catatan Teknisi')
+                        ->form(fn (Model $record) => [
+                            Textarea::make('technician_note')
+                                ->label(false)
+                                ->default($record->technician_note)
+                                ->rows(10)
+                                ->readonly(),
+                        ])
+                        ->modalSubmitAction(false)            //Remove Submit Button
+                        ->modalCancelAction(false),
+                    Tables\Actions\Action::make('signature')
+                        ->label('Tanda Tangan Teknisi')
+                        ->modalHeading('Tanda Tangan Teknisi')
+                        ->form(fn (Model $record) => [
+                            Forms\Components\FileUpload::make('signature')
+                                ->label(false)
+                                ->default($record->signature)
+                                ->directory('maintenance/documentation')
+                                ->image()
+                                ->openable()
+                                ->downloadable()
+                                ->deletable(false)
+                                ->disabled()
+                                ->placeholder('Tidak ada tanda tangan teknisi'),
+                        ])
+                        ->modalSubmitAction(false)            //Remove Submit Button
+                        ->modalCancelAction(false),
+                    Tables\Actions\Action::make('generateReport'),
+                    Tables\Actions\Action::make('requestApproved')
+                        ->action(fn(Model $record) => $record->update(['maintenance_status' => 'approved']))
+                        ->requiresConfirmation()
+                        ->disabled(fn(Model $record) => $record->maintenance_status == 'approved')
+                    ,
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
