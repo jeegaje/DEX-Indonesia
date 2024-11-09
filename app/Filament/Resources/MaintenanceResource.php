@@ -30,6 +30,8 @@ class MaintenanceResource extends Resource
 {
     protected static ?string $model = Maintenance::class;
 
+    protected static ?int $navigationSort = 1;
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
@@ -75,7 +77,6 @@ class MaintenanceResource extends Resource
                                     ])
                                     ->schema([
                                         Fieldset::make('Data Pompa')
-                                            ->relationship('maintenanceAssignment')
                                             ->schema([
                                                 Group::make()
                                                     ->relationship('user')
@@ -1304,7 +1305,6 @@ class MaintenanceResource extends Resource
                                     ])
                                     ->schema([
                                         Fieldset::make('Data Pompa')
-                                            ->relationship('maintenanceAssignment')
                                             ->schema([
                                                 Group::make()
                                                     ->relationship('user')
@@ -1766,16 +1766,16 @@ class MaintenanceResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('maintenanceAssignment.user.name')
+                TextColumn::make('user.name')
                     ->label('Nama Teknisi')
                     ->searchable(),
                 TextColumn::make('inspection_date')
                     ->label('Tanggal')
                     ->searchable(),
-                TextColumn::make('maintenanceAssignment.pump.serial_number')
+                TextColumn::make('pump.serial_number')
                     ->label('No Seri Pompa')
                     ->searchable(),
-                TextColumn::make('maintenanceAssignment.pump.unit')
+                TextColumn::make('pump.unit')
                     ->label('No Unit Pompa')
                     ->searchable(),
                 TextColumn::make('maintenance_status')
@@ -1827,9 +1827,23 @@ class MaintenanceResource extends Resource
                         ])
                         ->modalSubmitAction(false)            //Remove Submit Button
                         ->modalCancelAction(false),
-                    Tables\Actions\Action::make('generateReport'),
+                    Tables\Actions\Action::make('generateReport')
+                    ->url( function (Model $record) {
+                        return route('generateReport', ['id' => $record->id]);
+                    }) // Ganti dengan nama route kamu
+                    ->label('Generate Report')
+                    ->openUrlInNewTab(),
                     Tables\Actions\Action::make('requestApproved')
-                        ->action(fn(Model $record) => $record->update(['maintenance_status' => 'approved']))
+                        ->action(function (Model $record) {
+                            $record->update(['maintenance_status' => 'approved']);
+                            $record->pump->update(['number_of_inspection' => $record->maintenancePumpData->number_of_inspection]);
+                            if ($record->maintenancePumpData->running_hours_monthly) {
+                                $record->pump->update(['running_hours_monthly' => $record->maintenancePumpData->running_hours_monthly]);
+                            }
+                            if ($record->maintenancePumpData->running_hours_total) {
+                                $record->pump->update(['running_hours_total' => $record->maintenancePumpData->running_hours_total]);
+                            }
+                        })
                         ->requiresConfirmation()
                         ->disabled(fn(Model $record) => $record->maintenance_status == 'approved')
                     ,

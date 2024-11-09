@@ -17,19 +17,12 @@ class CreateMaintenanceAssignment extends CreateRecord
     
     protected function handleRecordCreation(array $data): MaintenanceAssignment
     {
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role_id' => $data['role_id']
-        ]);
 
-        $maintenanceAssignment = null;
 
 
         foreach ($data['pumps'] as $pump) {
             $maintenanceAssignment = MaintenanceAssignment::create([
-                'user_id' => $user->id,
+                'user_id' => $data['user_id'],
                 'pump_id' => $pump['pump_id'],
                 'maintenance_type' =>  $pump['maintenance_type'],
                 'token' =>  Str::random(32)

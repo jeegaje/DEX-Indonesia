@@ -16,7 +16,9 @@
             <select id="pumps" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @foreach($pumps as $pump)
                     <option 
+                        class="redirect-element"
                         value="{{ $pump->token }}"
+                        data-url-target="{{ url('') . '/maintenance/create?token=' . $pump->token . '&pump=' . Hash::make( $pump->pump_id) }}"
                         @if(request()->get('token') == $pump->token) selected @endif
                     >
                         {{ $pump->pump->serial_number . ' ' . $pump->pump->location }}
@@ -25,4 +27,24 @@
             </select>
         </div>
     </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const redirectElements = document.querySelectorAll('.redirect-element');
+
+            // Loop melalui setiap elemen dan tambahkan event listener
+            redirectElements.forEach(element => {
+                element.addEventListener('click', function () {
+                    console.log('asdads');
+                    // Ambil URL dari atribut data-target-url
+                    const targetUrl = this.getAttribute('data-target-url');
+                    
+                    // Redirect ke URL tersebut
+                    if (targetUrl) {
+                        window.location.href = targetUrl;
+                    }
+                });
+            });
+        });
+    </script>
 </div>

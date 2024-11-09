@@ -80,4 +80,14 @@ class Maintenance extends Model
     {
         return $this->hasOne(MaintenanceDocumentation::class);
     }
+
+    public function pump(): BelongsTo
+    {
+        return $this->belongsTo(Pump::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'technician_id');
+    }
 }

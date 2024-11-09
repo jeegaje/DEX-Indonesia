@@ -14,4 +14,5 @@ class Pump extends Model
     {
         return $this->hasMany(PumpInspection::class);
     }
+
 }

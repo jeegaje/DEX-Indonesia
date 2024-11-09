@@ -36,7 +36,6 @@ class BlogResource extends Resource
                 Forms\Components\Section::make()
                     ->schema([
                         Forms\Components\TextInput::make('title')
-                            ->label(__('filament-blog::filament-blog.title'))
                             ->required()
                             ->live(debounce: 500)
                             ->afterStateUpdated(function (Get $get, Set $set, ?string $old, ?string $state) {
@@ -48,7 +47,6 @@ class BlogResource extends Resource
                             }),
 
                         Forms\Components\TextInput::make('slug')
-                            ->label(__('filament-blog::filament-blog.slug'))
                             ->required()
                             ->unique(Blog::class, 'slug', fn ($record) => $record),
 
@@ -77,6 +75,7 @@ class BlogResource extends Resource
                         Forms\Components\FileUpload::make('banner')
                             ->label('Banner')
                             ->image()
+                            ->directory('blogs')
                             ->columnSpan([
                                 'sm' => 2,
                             ]),
@@ -105,8 +104,8 @@ class BlogResource extends Resource
                         //     ->searchable()
                         //     ->required(),
 
-                        Forms\Components\DatePicker::make('published_at')
-                            ->label(__('filament-blog::filament-blog.published_date')),
+                        Forms\Components\DateTimePicker::make('published_at')
+                            ->label('Tanggal Publish'),
                     ])
                     ->columns([
                         'sm' => 2,
@@ -125,12 +124,10 @@ class BlogResource extends Resource
                             ->default('1'),
                             
                         Forms\Components\Placeholder::make('created_at')
-                            ->label(__('filament-blog::filament-blog.created_at'))
                             ->content(fn (
                                 ?Blog $record
                             ): string => $record ? $record->created_at->diffForHumans() : '-'),
                         Forms\Components\Placeholder::make('updated_at')
-                            ->label(__('filament-blog::filament-blog.last_modified_at'))
                             ->content(fn (
                                 ?Blog $record
                             ): string => $record ? $record->updated_at->diffForHumans() : '-'),
@@ -144,7 +141,18 @@ class BlogResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('published_at')
+                    ->label('Tanggal Publikasi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('meta_description')
+                    ->label('Deskripsi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('blogCategory.name')
+                    ->label('Kategori')
+                    ->searchable(),
             ])
             ->filters([
                 //

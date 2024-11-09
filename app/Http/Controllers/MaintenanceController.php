@@ -20,11 +20,14 @@ use App\Models\MaintenanceSensorTest;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Browsershot\Browsershot;
+use Illuminate\Support\Facades\Hash;
+
 
 class MaintenanceController extends Controller
 {
-
     private function fileRelocated(String $filepath, String $target) {
         $fileLocation = Storage::putFile(
             path: 'public/' . $target,
@@ -35,30 +38,175 @@ class MaintenanceController extends Controller
 
         return $fileLocation;
     }
+
+    private function generateBase64($filePath) {
+        if (!Storage::exists($filePath)) {
+            return null; // Atau tangani error sesuai kebutuhan
+        }
+    
+        $fileContent = Storage::get($filePath);
+        $mimeType = Storage::mimeType($filePath);
+        $base64 = base64_encode($fileContent);
+        
+        return 'data:' . $mimeType . ';base64,' . $base64;
+    }
     // Method untuk menampilkan form create
     public function create(Request $request)
     {
         // Ambil token dari query string
         $token = $request->query('token');
 
+        $pumpToken = $request->query('pump');
+
         $pump = MaintenanceAssignment::with(['pump', 'user'])->where('token', $token)->first();
+
+        if (Hash::check($pump->pump_id, $pumpToken)) {
+            
+        } else {
+            abort(404);
+        }
 
         $pumps = MaintenanceAssignment::with('pump')->where('user_id', $pump->user_id)->get();
 
-        $total_of_inspection = Maintenance::where('maintenance_assignment_id', $pump->id)->count() + 1;
+        $total_of_inspection = Maintenance::where('pump_id', $pump->pump->id)->count() + 1;
 
         $data_pump = $pump->pump;
 
+        $maintenance_type = $pump->maintenance_type;
+
         $data_technician = $pump->user;
 
-        return view('welcome', compact('token', 'pumps', 'data_pump', 'data_technician', 'total_of_inspection'));
+        return view('welcome', compact('token', 'pumps', 'data_pump', 'data_technician', 'total_of_inspection', 'maintenance_type'));
 
-        // Validasi token, jika perlu
-        // if ($this->validateToken($token)) {
-        //     return view('maintenance.create', compact('token'));
-        // } else {
-        //     return redirect()->back()->withErrors(['error' => 'Invalid token']);
-        // }
+    }
+
+    public function generateReport(Request $request, $id)
+    {
+
+        $maintenance = Maintenance::with([
+            'maintenanceAssignment',
+            'maintenancePumpData',
+            'maintenanceLvmdp',
+            'maintenanceJunctionBox',
+            'maintenancePanel',
+            'maintenancePanelFunction',
+            'maintenanceElectroMechanical',
+            'maintenanceColumnPipeWaterOutput',
+            'maintenanceSensorTest',
+            'maintenanceMegger',
+            'maintenanceInsulation',
+            'maintenanceResistance',
+            'maintenancePumpCondition',
+            'maintenanceDocumentation',
+            ])->where('id', $id)->first();
+
+        $pumpId = $maintenance->pump->id;
+
+        $maintenanceForCurve = Maintenance::where('pump_id', $pumpId)
+        ->orderBy('inspection_date', 'desc') // Mengurutkan berdasarkan kolom `date` secara descending
+        ->limit(6) // Membatasi jumlah data menjadi 6
+        ->get()
+        ->sortBy('inspection_date');
+
+        $dataCurve = [
+            'kw' => [],
+            'amper' => [],
+            'rpm' => [],
+            'torsi' => [],
+            'vibration' => [],
+            'sound' => [],
+        ];
+
+        foreach($maintenanceForCurve as $maintenancecur) {
+            array_push($dataCurve['kw'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_kw"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_kw"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_kw"},
+                ]
+            ]);
+            array_push($dataCurve['amper'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_amper"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_amper"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_amper"},
+                ]
+            ]);
+            array_push($dataCurve['rpm'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_rpm"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_rpm"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_rpm"},
+                ]
+            ]);
+            array_push($dataCurve['torsi'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_torsi"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_torsi"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_torsi"},
+                ]
+            ]);
+            array_push($dataCurve['sound'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_sound"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_sound"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_sound"},
+                ]
+            ]);
+            array_push($dataCurve['vibration'], [
+                'name' => $maintenancecur->inspection_date,
+                'data' => [
+                    $maintenancecur->maintenanceElectroMechanical->{"40_hz_vibration"},
+                    $maintenancecur->maintenanceElectroMechanical->{"45_hz_vibration"},
+                    $maintenancecur->maintenanceElectroMechanical->{"50_hz_vibration"},
+                ]
+            ]);
+        }
+
+        $maintenanceDocumentation = [];
+
+        foreach($maintenance->maintenanceDocumentation->toArray() as $key => $value) {
+                $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
+        };
+
+        foreach($maintenance->maintenanceElectroMechanical->toArray() as $key => $value) {
+            $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
+        };
+
+        foreach($maintenance->maintenanceInsulation->toArray() as $key => $value) {
+            $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
+        };
+
+        foreach($maintenance->maintenanceResistance->toArray() as $key => $value) {
+            $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
+        };
+
+        // dd($maintenanceDocumentation);
+    
+        $html = view('company-profile.pdf', [
+            'maintenance' => $maintenance,
+            'dataCurve' => $dataCurve,
+            'maintenanceDocumentation' => $maintenanceDocumentation
+        ])->render();
+
+        $pdf = Browsershot::html($html)
+            ->showBackground()
+            ->paperSize(210, 330, 'mm')
+    
+            ->pdf();
+            // ->save('pdf-' . Str::random(10) . '.pdf');
+    
+    
+        return new Response($pdf, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Dispotition' => 'inline; filenames="report.pdf'
+        ]);
+    
     }
 
     public function testUpload(Request $request) {
@@ -69,7 +217,8 @@ class MaintenanceController extends Controller
 
 
             $maintenance = new Maintenance();
-            $maintenance->maintenance_assignment_id = $maintenance_assignment->id;
+            $maintenance->pump_id = $maintenance_assignment->pump->id;
+            $maintenance->technician_id = $maintenance_assignment->user->id;
             $maintenance->maintenance_type = $maintenance_assignment->maintenance_type;
             $maintenance->maintenance_status = 'waiting_approval';
             $maintenance->inspection_date = Carbon::now(); 
@@ -83,21 +232,6 @@ class MaintenanceController extends Controller
             $maintenance->save();
 
 
-
-
-
-            // $request->validate([
-            //     'technician' => 'required|string|max:255',
-            //     'location' => 'required|string|max:255',
-            //     'serial_number' => 'required|string|max:255',
-            //     'flow_and_head' => 'required|string|max:255',
-            //     'unit' => 'required|string|max:255',
-            //     'number_of_inspection' => 'required|integer',
-            //     'running_hours_total' => 'required|integer',
-            //     'running_hours_total_image' => 'image|nullable|max:2048',
-            //     'running_hours_monthly' => 'required|integer',
-            //     'running_hours_monthly_image' => 'image|nullable|max:2048',
-            // ]);
     
             $maintenance_pump_data = new MaintenancePumpData();
 

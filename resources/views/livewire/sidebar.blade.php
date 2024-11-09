@@ -251,6 +251,7 @@
                 <p class="ms-5">1/8</p>
             </div>
           </li>
+          @if ($maintenance_type == 'full')
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-megger" aria-controls="target-megger" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Megger</h3>
             <div class="flex gap-2 items-center">
@@ -371,6 +372,7 @@
                 <p class="ms-5">1/8</p>
             </div>
           </li>
+          @endif
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-documentation" aria-controls="target-documentation" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Dokumentasi</h3>
             <div class="flex gap-2 items-center">

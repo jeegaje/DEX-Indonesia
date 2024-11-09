@@ -41,10 +41,19 @@ class FlyerProductResource extends Resource
                     ]),
                 Forms\Components\FileUpload::make('path')
                     ->label('Banner Flyer Product')
-                    ->image()
+                    ->directory('media-document/flyer')
+                    ->acceptedFileTypes(['application/pdf'])
                     ->columnSpan([
                         'sm' => 2,
-                    ]),
+                    ])
+                    ->preserveFilenames(),
+                Forms\Components\Select::make('caption')
+                    ->label('Tipe Flyer')
+                    ->options([
+                        'submersible_sewage_centrifugal_pump' => 'Submersible Sewage Centrifugal Pump' ,
+                        'submersible_axial_flow_pump' => 'Submersible Axial Flow Pump' 
+                    ])
+                    ->searchable(),
 
             ]);
     }
@@ -53,7 +62,12 @@ class FlyerProductResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('path')
+                ->label('Name File')
+                ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Tipe')
+                    ->searchable(),
             ])
             ->filters([
                 //
@@ -65,7 +79,9 @@ class FlyerProductResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'Flyer Product'));
+
     }
 
     public static function getRelations(): array
