@@ -51,7 +51,9 @@ class BlogCategoryResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')
+                    ->label('Nama Kategori')
+                    ->searchable(),
             ])
             ->filters([
                 //

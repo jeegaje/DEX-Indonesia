@@ -19,8 +19,8 @@
     <body>
         <div style="background-color: rgb(207, 207, 207);">
             <div style="max-width: 980px; margin: auto">
-                <livewire:navbar :pumps="$pumps" :data_technician="$data_technician"/>
-                <livewire:sidebar />
+                <livewire:navbar :pumps="$pumps" :data_technician="$data_technician" />
+                <livewire:sidebar :maintenance_type="$maintenance_type" />
                 @if(session('success'))
     <div class="bg-green-500 text-white p-4 rounded-lg mb-4">
         {{ session('success') }}
@@ -1229,9 +1229,14 @@
                                 </div>
                                 <div class="flex justify-end">
                                     <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="pipeColumnWaterOutput">kembali</button>
+                                    @if ($maintenance_type == 'full')
                                     <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="megger">Lanjut</button>
+                                    @else
+                                    <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="documentation">Lanjut</button>
+                                    @endif
                                 </div>
                             </div>
+                            @if ($maintenance_type == 'full')
                             <div
                                 class="hidden rounded-lg"
                                 id="target-megger"
@@ -1602,6 +1607,7 @@
                                     <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="documentation">Lanjut</button>
                                 </div>
                             </div>
+                            @endif
                             <div
                                 class="hidden rounded-lg"
                                 id="target-documentation"
@@ -1694,7 +1700,11 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-end">
+                                    @if ($maintenance_type == 'full')
                                     <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="pumpCondition">kembali</button>
+                                    @else
+                                    <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="testCensor">kembali</button>
+                                    @endif
                                     <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2" type="button">
                                         Submit
                                     </button>
@@ -1749,6 +1759,8 @@
             document.addEventListener('DOMContentLoaded', function () {
                 const tabsElement = document.getElementById('tabs-example');
         
+                @if ($maintenance_type == 'full')
+
                 const tabElements = [
                     {
                         id: 'pumpData',
@@ -1816,6 +1828,57 @@
                         targetEl: document.querySelector('#target-documentation'),
                     },
                 ];
+                @else
+
+                const tabElements = [
+                    {
+                        id: 'pumpData',
+                        triggerEl: document.querySelector('#trigger-pump-data'),
+                        targetEl: document.querySelector('#target-pump-data'),
+                    },
+                    {
+                        id: 'lvmdp',
+                        triggerEl: document.querySelector('#trigger-lvmdp'),
+                        targetEl: document.querySelector('#target-lvmdp'),
+                    },
+                    {
+                        id: 'junctionBox',
+                        triggerEl: document.querySelector('#trigger-junction-box'),
+                        targetEl: document.querySelector('#target-junction-box'),
+                    },
+                    {
+                        id: 'panel',
+                        triggerEl: document.querySelector('#trigger-panel'),
+                        targetEl: document.querySelector('#target-panel'),
+                    },
+                    {
+                        id: 'functionPanel',
+                        triggerEl: document.querySelector('#trigger-panel-function'),
+                        targetEl: document.querySelector('#target-panel-function'),
+                    },
+                    {
+                        id: 'elektrikalMekanikal',
+                        triggerEl: document.querySelector('#trigger-elektrikal-mekanikal'),
+                        targetEl: document.querySelector('#target-elektrikal-mekanikal'),
+                    },
+                    {
+                        id: 'pipeColumnWaterOutput',
+                        triggerEl: document.querySelector('#trigger-pipe-column-water-output'),
+                        targetEl: document.querySelector('#target-pipe-column-water-output'),
+                    },
+                    {
+                        id: 'testCensor',
+                        triggerEl: document.querySelector('#trigger-test-censor'),
+                        targetEl: document.querySelector('#target-test-censor'),
+                    },
+                    {
+                        id: 'documentation',
+                        triggerEl: document.querySelector('#trigger-documentation'),
+                        targetEl: document.querySelector('#target-documentation'),
+                    },
+                ];
+
+                @endif
         
                 const options = {
                     defaultTabId: 'pumpData',
@@ -1837,7 +1900,20 @@
                         tabs.show(tabTarget);
                     });
                 });
+
+
+                const pumpsSelect = document.getElementById('pumps');
+
+                pumpsSelect.addEventListener('change', function () {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const targetUrl = selectedOption.getAttribute('data-url-target');
+
+                    if (targetUrl) {
+                        window.location.href = targetUrl; // Redirect ke URL yang ditentukan
+                    }
+                });
             });
+
             
         </script>
     </body>

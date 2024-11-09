@@ -28,6 +28,12 @@ class HeroSectionResource extends Resource
 
     protected static ?string $cluster = MediaDocument::class;
 
+    protected function getTableQuery(): \Illuminate\Database\Eloquent\Builder
+    {
+        return parent::getTableQuery()
+            ->where('type', 'Company Profiles'); // Ganti kondisi ini sesuai kebutuhan
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -41,6 +47,7 @@ class HeroSectionResource extends Resource
                     ]),
                 Forms\Components\FileUpload::make('path')
                     ->label('Banner Hero Section')
+                    ->directory('media-document/hero')
                     ->image()
                     ->columnSpan([
                         'sm' => 2,
@@ -52,7 +59,13 @@ class HeroSectionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('path')
+                    ->label('Name File')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Tipe')
+                    ->searchable(),
+                
             ])
             ->filters([
                 //
@@ -64,7 +77,8 @@ class HeroSectionResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'Hero Section'));
     }
 
     public static function getRelations(): array

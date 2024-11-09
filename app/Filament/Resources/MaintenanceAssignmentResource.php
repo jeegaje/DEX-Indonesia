@@ -20,10 +20,14 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Hash;
+use Filament\Forms\Components\Group;
 
 class MaintenanceAssignmentResource extends Resource
 {
     protected static ?string $model = MaintenanceAssignment::class;
+
+    protected static ?int $navigationSort = 2;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -33,22 +37,50 @@ class MaintenanceAssignmentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->label('nama')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->label('Email')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('password')
-                    ->label('Password')
-                    ->numeric()
-                    ->required(),
-                Select::make('role_id')
-                    ->label('Role')
-                    ->options(Role::where('id', '!=', 1)->pluck('name', 'id'))
-                    ->searchable(),
+                Select::make('user_id')
+                            ->label('Teknisi')
+                            ->searchable()
+                            ->getSearchResultsUsing(function (string $search): array {
+                                return User::where('name', 'like', "%{$search}%")
+                                    ->where('role_id', 4)
+                                    ->limit(10)
+                                    ->get()
+                                    ->mapWithKeys(function ($user) {
+                                        return [$user->id => "{$user->name}"];
+                                    })
+                                    ->toArray();
+                            })
+                            ->getOptionLabelUsing(function ($value) {
+                                return User::find($value)?->name;
+                            }),
+                            Select::make('maintenance_type')
+                            ->label('Tipe Maintenance')
+                            ->options([
+                                'monthly' => 'Maintenance Bulanan',
+                                'full' => 'Full Maintenance',
+                            ])
+                            ->hidden(fn ($get) => $form->getRecord() === null),
+
+                            Select::make('pump_id')
+                            ->label('No Seri Pompa')
+                            ->searchable()
+                            ->getSearchResultsUsing(function (string $search): array {
+                                return Pump::where('serial_number', 'like', "%{$search}%")
+                                    ->orWhere('location', 'like', "%{$search}%")
+                                    ->limit(10)
+                                    ->get()
+                                    ->mapWithKeys(function ($pump) {
+                                        return [$pump->id => "{$pump->serial_number} ({$pump->location})"];
+                                    })
+                                    ->toArray();
+                            })
+                            ->getOptionLabelUsing(function ($value) {
+                                return Pump::find($value)?->serial_number;
+                            })
+                            ->hidden(fn ($get) => $form->getRecord() === null),
+
+
+                            
                 Repeater::make('pumps')
                     ->label('Data Pompa')
                     ->schema([
@@ -76,6 +108,7 @@ class MaintenanceAssignmentResource extends Resource
                     ->columnSpan([
                         'sm' => 2,
                     ])
+                    ->hidden(fn ($get) => $form->getRecord() !== null),
 
         ]);
     }
@@ -92,6 +125,9 @@ class MaintenanceAssignmentResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('pump.serial_number')
                     ->label('Pump Serial Number')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('maintenance_type')
+                    ->label('Tipe Maintenance')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('user.role.name')
                     ->badge()
@@ -118,7 +154,7 @@ class MaintenanceAssignmentResource extends Resource
                                 Forms\Components\TextInput::make('generateLink')
                                     ->hiddenLabel()
                                     ->default(function (MaintenanceAssignment $maintenanceAssignment) {
-                                        return url('') . '/maintenance/create?token=' . $maintenanceAssignment->token;
+                                        return url('') . '/maintenance/create?token=' . $maintenanceAssignment->token . '&pump=' . Hash::make( $maintenanceAssignment->pump_id);
                                     }),
 
                                 Forms\Components\Actions::make([

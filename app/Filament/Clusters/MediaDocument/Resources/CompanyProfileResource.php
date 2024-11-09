@@ -41,7 +41,9 @@ class CompanyProfileResource extends Resource
                     ]),
                 Forms\Components\FileUpload::make('path')
                     ->label('Banner Company Profile')
-                    ->image()
+                    ->directory('media-document/company-profile')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->maxSize(5000)
                     ->columnSpan([
                         'sm' => 2,
                     ]),
@@ -52,7 +54,12 @@ class CompanyProfileResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('path')
+                ->label('Name File')
+                ->searchable(),
+                Tables\Columns\TextColumn::make('type')
+                    ->label('Tipe')
+                    ->searchable(),
             ])
             ->filters([
                 //
@@ -64,7 +71,8 @@ class CompanyProfileResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->modifyQueryUsing(fn (Builder $query) => $query->where('type', 'Company Profile'));
     }
 
     public static function getRelations(): array

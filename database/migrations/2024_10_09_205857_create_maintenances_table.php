@@ -13,12 +13,13 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('maintenance_assignment_id')->constrained('maintenance_assignments')->onDelete('cascade');
             $table->string('maintenance_type');
             $table->string('maintenance_status');
             $table->date('inspection_date');
             $table->string('technician_note')->nullable();
             $table->string('signature')->nullable();
+            $table->foreignId('pump_id')->nullable()->constrained('pumps')->onDelete('set null'); 
+            $table->foreignId('technician_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 
             $table->timestamps();
         });

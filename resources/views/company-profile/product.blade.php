@@ -29,7 +29,7 @@
                 </div>
                 <div id="default-tab-content">
                     <div class="hidden p-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <div class="flex gap-20">
+                        <div class="flex md:gap-20 gap-0 md:flex-row flex-col">
                             <div class="basis-1/2">
                                 <ul class="text-gray-500 list-inside dark:text-gray-400">
                                     <div class="mb-10">
@@ -50,17 +50,17 @@
                                         </li>
                                         <p>
                                             <span class="font-bold text-black">Impeller Material</span> : Stainless Steel 304 - 316 - Duplex <br>
-                                            <span class="font-bold text-black">Shaft Material</span> : Stainless Steel 420<br>
-                                            <span class="font-bold text-black">Pump Case Material</span> : Gray Iron Casting 250<br>
-                                            <span class="font-bold text-black">Wearing Ring</span>   : Stainless Steel 304<br>
-                                            <span class="font-bold text-black">Impeller Material</span> : Stainless Steel 304 - 316 - Duplex<br>
+                                            <span class="font-bold text-black">Shaft Material</span> : Stainless Steel 420 <br>
+                                            <span class="font-bold text-black">Pump Case Material</span> : Gray Iron Casting 250 <br>
+                                            <span class="font-bold text-black">Wearing Ring</span>   : Stainless Steel 304 <br>
+                                            <span class="font-bold text-black">Impeller Material</span> : Stainless Steel 304 - 316 - Duplex <br>
                                             <span class="font-bold text-black">Cables</span> : Stainless Steel 420<br>
                                             <span class="font-bold text-black">Impeller Material</span> : Stainless Steel 304 - 316 - Duplex<br>
                                             <span class="font-bold text-black">Insulation Class</span> : Stainless Steel 420<br>
                                     </div>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="md:order-none order-first grid justify-center">
                                 <img src="{{ asset('images/company-profile/product-2.png') }}" alt="">
                             </div>
                             <div class="basis-1/2">
@@ -94,9 +94,78 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+                            <div class="mb-10">
+                                <h1 class="text-2xl font-bold">Dokumentasi Produk</h1>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                @forEach($documentation_product_axial_flow_pump as $galery)
+                                    @if ($galery->media_type == 'image')
+                                    <div data-modal-target="{{$galery->path}}" data-modal-toggle="{{$galery->path}}" class="bg-cover cursor-pointer rounded-md border-2 drop-shadow-lg" style="background-image: url('{{ asset('storage/' . $galery->path) }}'); min-height: 180px" ></div>
+                                    @elseif ($galery->media_type == 'video')
+                                    <div data-modal-target="{{$galery->path}}" data-modal-toggle="{{$galery->path}}" class="cursor-pointer flex items-center rounded-md border-2 drop-shadow-lg" >
+                                        <video height="100%" preload="metadata">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/mp4">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/webm">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/ogg">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    @endif
+                                    <div id="{{$galery->path}}" tabindex="-1" aria-hidden="true" class="hidden fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                        <div class="relative w-full max-w-4xl max-h-full">
+                                            <!-- Modal content -->
+                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                <!-- Modal header -->
+                                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                        Galery Dex
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                        </svg>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="p-4 md:p-5 space-y-4">
+                                                    @if ($galery->media_type == 'image')
+                                                        <img src="{{ asset('storage/' . $galery->path) }}" alt="" class="w-full">
+                                                    @elseif ($galery->media_type == 'video')
+                                                        <video width="100%" controls autoplay>
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/mp4">
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/webm">
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/ogg">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                    @endif
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                                  <p class="text-sm italic text-slate-900 text-center">{{ $galery->caption }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                      
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+                            <div class="flex md:flex-row flex-col items-center justify-between bg-[#0756FF] rounded-lg p-5">
+                                <div class="flex flex-col md:items-start items-center">
+                                    <h3 class="font-bold text-xl text-white mb-5 md:text-left text-center">
+                                        Flyer Produk Submersible <br>
+                                        Axial Flow Pump  
+                                    </h3>
+                                    <a href="{{ route('file.download', ['path' => $flyer_product->filter(fn ($item) => $item->caption == 'submersible_axial_flow_pump')->pluck('path')->first()]) }}" class="bg-[#F4F7FA47] text-white py-2 px-10 rounded-md ">Download</a>
+                                </div>
+                                    <img class="max-h-[150px] md:order-none order-first" src="{{ asset('images/product/flyer_axial_flow_pump.png') }}" alt="">
+                            </div>
+                        </div>
                     </div>
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
-                        <div class="flex gap-20">
+                    <div class="hidden p-4 rounded-lg dark:bg-gray-800" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                        <div class="flex md:gap-20 gap-0 md:flex-row flex-col">
                             <div class="basis-1/2">
                                 <ul class="text-gray-500 list-inside dark:text-gray-400">
                                     <div class="mb-10">
@@ -125,7 +194,7 @@
                                     </div>
                                 </ul>
                             </div>
-                            <div>
+                            <div class="md:order-none order-first grid justify-center">
                                 <img src="{{ asset('images/company-profile/product-1.png') }}" alt="">
                             </div>
                             <div class="basis-1/2">
@@ -159,38 +228,80 @@
                                 </ul>
                             </div>
                         </div>
+                        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+                            <div class="mb-10">
+                                <h1 class="text-2xl font-bold">Dokumentasi Produk</h1>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                @forEach($documentation_product_sewage_centrifugal_pump as $galery)
+                                    @if ($galery->media_type == 'image')
+                                    <div data-modal-target="{{$galery->path}}" data-modal-toggle="{{$galery->path}}" class="bg-cover cursor-pointer rounded-md border-2 drop-shadow-lg" style="background-image: url('{{ asset('storage/' . $galery->path) }}'); min-height: 180px" ></div>
+                                    @elseif ($galery->media_type == 'video')
+                                    <div data-modal-target="{{$galery->path}}" data-modal-toggle="{{$galery->path}}" class="cursor-pointer flex items-center rounded-md border-2 drop-shadow-lg" >
+                                        <video height="100%" preload="metadata">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/mp4">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/webm">
+                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/ogg">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                    @endif
+                                    <div id="{{$galery->path}}" tabindex="-1" aria-hidden="true" class="hidden fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                        <div class="relative w-full max-w-4xl max-h-full">
+                                            <!-- Modal content -->
+                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                <!-- Modal header -->
+                                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                                        Galery Dex
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                        </svg>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="p-4 md:p-5 space-y-4">
+                                                    @if ($galery->media_type == 'image')
+                                                        <img src="{{ asset('storage/' . $galery->path) }}" alt="" class="w-full">
+                                                    @elseif ($galery->media_type == 'video')
+                                                        <video width="100%" controls autoplay>
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/mp4">
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/webm">
+                                                            <source src="{{ asset('storage/' . $galery->path) }}" type="video/ogg">
+                                                            Your browser does not support the video tag.
+                                                        </video>
+                                                    @endif
+                                                </div>
+                                                <!-- Modal footer -->
+                                                <div class="p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                                                  <p class="text-sm italic text-slate-900 text-center">{{ $galery->caption }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                      
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
+                            <div class="flex md:flex-row flex-col items-center justify-between bg-[#0756FF] rounded-lg p-5">
+                                <div class="flex flex-col md:items-start items-center">
+                                    <h3 class="font-bold text-xl text-white mb-5 md:text-left text-center">
+                                        Flyer Produk Submersible <br>
+                                        Sewage Centrifugal Pump  
+                                    </h3>
+                                    <a href="{{ route('file.download', ['path' => $flyer_product->filter(fn ($item) => $item->caption == 'submersible_sewage_centrifugal_pump')->pluck('path')->first()]) }}" class="bg-[#F4F7FA47] text-white py-2 px-10 rounded-md ">Download</a>
+                                </div>
+                                    <img class="max-h-[150px] md:order-none order-first" src="{{ asset('images/product/flyer_sewage_centrifugal_pump.png') }}" alt="">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section>
-            <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
-                <div class="mb-10">
-                    <h1 class="text-2xl font-bold">Rekomendasi Produk</h1>
-                </div>
-                <div class="grid grid-cols-4 gap-4">
-                    <div class="bg-cover" style="background-image: url('{{ asset('images/company-profile/galery-1.png') }}'); height: 150px" ></div>
-                    <div class="bg-cover" style="background-image: url('{{ asset('images/company-profile/galery-2.png') }}'); height: 150px"></div>
-                    <div class="bg-cover" style="background-image: url('{{ asset('images/company-profile/galery-3.png') }}'); height: 150px"></div>
-                    <div class="bg-cover" style="background-image: url('{{ asset('images/company-profile/galery-4.png') }}'); height: 150px"></div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
-                <div class="flex items-center justify-between bg-[#0756FF] rounded-lg p-5">
-                    <div>
-                        <h3 class="font-bold text-xl text-white mb-5">
-                            Flyer Produk Submersible <br>
-                            Axial Flow Pump  
-                        </h3>
-                        <button class="bg-[#F4F7FA47] text-white py-2 px-10 rounded-md">Download</button>
-                    </div>
-                        <img class="max-h-[150px]" src="{{ asset('images/product/flyer.png') }}" alt="">
-                </div>
-            </div>
-        </section>
-        <livewire:company-profile.footer />
+        <livewire:company-profile.footer :company_profile="$company_profile" />
     </body>
     @livewireScripts
 </html>
