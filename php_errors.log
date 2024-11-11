@@ -1,0 +1,1 @@
+[02-Nov-2024 15:38:14 UTC] PHP Fatal error:  Cannot redeclare generateBase64() (previously declared in C:\Users\angga\dev\DB KLIK\dex\routes\web.php:83) in C:\Users\angga\dev\DB KLIK\dex\routes\web.php on line 92
