@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
+@extends('company-profile.template')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Laravel</title>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @livewireStyles
-
-</head>
-
-<body>
-    <livewire:company-profile.navbar />
+@section('content')
     <section style="background-repeat: no-repeat; background-size: cover; background-position: center; background-image:
     linear-gradient(to left, rgba(155, 155, 155, 0.52), rgba(0, 0, 0, 0.73)),
     url('{{ asset('images/company-profile/galery-1.png') }}');">
@@ -88,8 +75,4 @@
             </form>
         </div>
     </section>
-    <livewire:company-profile.footer :company_profile="$company_profile" />
-</body>
-@livewireScripts
-
-</html>
+@endsection
