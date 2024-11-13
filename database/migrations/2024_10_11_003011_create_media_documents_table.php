@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('path');
             $table->string('type');
             $table->string('caption')->nullable();
+            $table->string('media_type')->nullable();
             $table->timestamps();
         });
     }
