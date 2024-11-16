@@ -35,8 +35,10 @@
     </head>
     <body>
         <livewire:company-profile.navbar />
-        @yield('content')
-        <livewire:company-profile.footer :company_profile="$company_profile" />
+	<main style="margin-top: 60px;">
+		@yield('content')
+	</main>
+	<livewire:company-profile.footer :company_profile="$company_profile" />
     </body>
     @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
