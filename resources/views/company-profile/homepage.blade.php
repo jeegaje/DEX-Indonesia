@@ -36,11 +36,11 @@
                             </div>
                         </div>
                         <ul>
-                            <li class="grid grid-cols-9 items-start h-[117px]">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
+                            <li class="grid grid-cols-12 items-start min-h-[130px]">
+                                <svg class="col-span-2 sm:col-span-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
                                     <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAAXNSR0IArs4c6QAAASpJREFUSEvt1r9Kw1AUx/Hv8W9HF2fdBfEJJC4+QeImzeKiryAk2R3t1EFdS2dXg0+gDoJb38AuglT0p7dpQYcaI0kczB0SCIfzuTn3XDjGZC348uaNSLBlsDL9XtI7fTPOX3p24fKZe7T2FEnEJQEz08iIRz1LbDFQOAdnVYPT/K9ix5YDXQFeXeiHlTpUNYKOGv4FSoPmHvNxAGurcDuA08vc8C8Bhcu7vQEnbdhcz/Jc38NuwRteCHV/9tCB4RPcDcBtoBa0ewQHnQzsHtaAfj6Yfa9B8zu5UCM15a30nv7P8ub36OyIX3dvg/6kArYU6LGCOfdbu/5pUKTW8uXJcGNoLcuMMJvwfcUyoqpViWTUt3iMjuFAoUQbK3fwlptzxY1B8ty31Fnvukea9jLNnqkAAAAASUVORK5CYII=" x="0" y="0" width="29" height="29"/>
                                   </svg>
-                                  <div class="col-span-8">
+                                  <div class="col-span-10 sm:col-span-11">
                                     Menjadi Perusahaan Nasional terdepan dalam pemberian Solusi bagi permasalahan banjir. Bersama arus inovasi yang terus mengalir, kami teguh sebagai penyedia Solusi Nasional yang komprehensif. Bertekad efektif mengatasi permasalahan banjir, kami menjadi Sungai utama dalam Solusi
                                   </div>
                             </li>
@@ -60,28 +60,28 @@
                         </div>
                         <ul>
                             <div class="mb-10">
-                                <li class="grid grid-cols-9 items-start h-[117px]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
+                                <li class="grid grid-cols-12 items-start min-h-[130px]">
+                                    <svg class="col-span-2 sm:col-span-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
                                         <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAAXNSR0IArs4c6QAAASpJREFUSEvt1r9Kw1AUx/Hv8W9HF2fdBfEJJC4+QeImzeKiryAk2R3t1EFdS2dXg0+gDoJb38AuglT0p7dpQYcaI0kczB0SCIfzuTn3XDjGZC348uaNSLBlsDL9XtI7fTPOX3p24fKZe7T2FEnEJQEz08iIRz1LbDFQOAdnVYPT/K9ix5YDXQFeXeiHlTpUNYKOGv4FSoPmHvNxAGurcDuA08vc8C8Bhcu7vQEnbdhcz/Jc38NuwRteCHV/9tCB4RPcDcBtoBa0ewQHnQzsHtaAfj6Yfa9B8zu5UCM15a30nv7P8ub36OyIX3dvg/6kArYU6LGCOfdbu/5pUKTW8uXJcGNoLcuMMJvwfcUyoqpViWTUt3iMjuFAoUQbK3fwlptzxY1B8ty31Fnvukea9jLNnqkAAAAASUVORK5CYII=" x="0" y="0" width="29" height="29"/>
                                       </svg>
-                                      <div class="col-span-8">
+                                      <div class="col-span-10 sm:col-span-11">
                                           Menciptakan dan mengembangkan produk berteknologi untuk penanganan banjir yang tepat guna
                                       </div>
                                 </li>
-                                <li class="grid grid-cols-9 items-start h-[117px]">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
+                                <li class="grid grid-cols-12 items-start min-h-[130px]">
+                                    <svg class="col-span-2 sm:col-span-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
                                         <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAAXNSR0IArs4c6QAAAY1JREFUSEvt1i9IA1EcB/Dvz78Dy4p5awZh2mxylgWtuzXxikVZNN8dmDSKFoOKba5aVjzWbCpMMF42uCKMif70t+dwoNve2+7OoD/YHhyP74f357Yf4bMmCmyNE1wGFglId55HNAZvhNOXMp1JHslXqsguM7yIgJ4xTPBaZfJp0mZnDDiJG+zkvzJWaNrmKwBWUuiHFQjKCYJCNX4DxT/a85gzs0BpDchl1JS7EDi4BMJH/ZthtL25LFB1gfQM0HhWo5SAeU8fNkKv94CFLLB7oT5S+w5QWgXOA2DzSG+1RujDoQqd2/4KX55Xq5fVdj/vxxuhPwWtW8DxFlC7V1usUyOhcqmqHiDj0g5wG+qQGP497Qa7z1iHHWqlo4DtvzbT395RQWM0CtAYlVdGYKla/fvp5X2dEzXc3ma5f2iqGAOqFzl4lvFFGhw5eMYfQqdsfoqhz+27x8l3g4yAUgW2mCBtaCJFBEd1+AX2mODGrTLDb1XIa6Nt2GaHGRugaBtvlj6XcUOA36xQINY7Jo2e9nTavoQAAAAASUVORK5CYII=" x="0" y="0" width="29" height="29"/>
                                       </svg>
-                                      <div class="col-span-8">
+                                      <div class="col-span-10 sm:col-span-11">
                                           Menyediakan produk dan layanan yang prima di seluruh wilayah Indonesia
 
                                       </div>
                                 </li>
-                                <li class="grid grid-cols-9 items-start">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
+                                <li class="grid grid-cols-12 items-start min-h-[130px]">
+                                    <svg class="col-span-2 sm:col-span-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="29" height="29" viewBox="0 0 29 29">
                                         <image xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAAXNSR0IArs4c6QAAAd9JREFUSEvtlj9MFFEQh7/xHwQKr5HQHZ0FCbGh1bOxIXS3doSjwEKwozS5vcSOUs6GAozdSUXCFTRc6IQGSCCh4zqDhVBACEZH5x6bnBFxuNythf6S3bd5eZnvzbx5syNc6FZeczeFosIDgUwy36ax9k1Y/FKRt2ZP7NX9VIuqxG0C/NaMCvF5RUpyO9LCDVjoNDCx/1V5LF2RrgG5tKA/WDWDaopAQx39DSj/oZcec6YHpkdgKAuZXqh/grkV2K5fLyvc4c3eg9UYbGxkw0kAm2YWYa7qB7uh889hLAfLm/CsDEen8GIEZsfDBvonOgA1oHn5rhbCmuisEr76C2EjHrk9vczY2COYn4L6Idyf9uDCmpagq8VwnkMDsL4Hk+Wfvf8TviXofhnu9gTwzgG8roawe9USNDH+cBAqMwH+pATruz6sG5rtCwbt/JqVZPWr92CPR27ox4VfPbJi8WE2ZPXkG3+I3dDkTponyxtwfAqjwxeV6TCEt/kqXeWxG2pGXkZg1yQJtc2llr1JKTw+8ReEZs+v5aknSTxr/iHonUg/d6DPvTLK6XeDSk2685pTwdrQVCRCIXT4eY1VKHaaqkrpfEniBrQBjrSgyjjS3sZbrc9VtgRKZ0vS+Bd9B5yBuPbnuw8lAAAAAElFTkSuQmCC" x="0" y="0" width="29" height="29"/>
                                       </svg>
-                                      <div class="col-span-8">
+                                      <div class="col-span-10 sm:col-span-11">
                                           Membagikan pengetahuan dan pengalaman mengenai penanganan permasalahan banjir kepada stakeholder serta Masyarakat
 
                                       </div>
