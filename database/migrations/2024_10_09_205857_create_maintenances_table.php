@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('maintenance_status');
             $table->date('inspection_date');
             $table->string('technician_note')->nullable();
-            $table->string('signature')->nullable();
+            $table->text('technician_signature')->nullable();
+            $table->text('operator_signature')->nullable();
             $table->foreignId('pump_id')->nullable()->constrained('pumps')->onDelete('set null'); 
             $table->foreignId('technician_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->foreignId('approved_by')->nullable()->constrained('users')->onDelete('set null'); 

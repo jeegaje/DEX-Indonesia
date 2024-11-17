@@ -14,7 +14,7 @@ class ListGaleryDexes extends ListRecords
     {
         return [
             Actions\CreateAction::make()
-            ->label('Upload Galery Dex'),
+            ->label('Upload Galery DEX'),
         ];
     }
 }

@@ -62,11 +62,13 @@ class PumpResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('location')->searchable(),
+                Tables\Columns\TextColumn::make('location')->searchable()
+                ->label('Lokasi'),
                 Tables\Columns\TextColumn::make('serial_number')->searchable(),
                 Tables\Columns\TextColumn::make('flow_and_head'),
                 Tables\Columns\TextColumn::make('unit'),
-                Tables\Columns\TextColumn::make('number_of_inspection'),
+                Tables\Columns\TextColumn::make('number_of_inspection')
+                ->label('Pemeriksaan'),
                 Tables\Columns\TextColumn::make('running_hours_total'),
                 Tables\Columns\TextColumn::make('running_hours_monthly'),
             ])
