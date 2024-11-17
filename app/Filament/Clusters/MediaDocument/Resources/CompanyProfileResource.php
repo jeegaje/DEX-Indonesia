@@ -43,10 +43,10 @@ class CompanyProfileResource extends Resource
                     ->label('Banner Company Profile')
                     ->directory('media-document/company-profile')
                     ->acceptedFileTypes(['application/pdf'])
-                    ->maxSize(5000)
                     ->columnSpan([
                         'sm' => 2,
-                    ]),
+                    ])
+                    ->preserveFilenames(),
             ]);
     }
 

@@ -228,13 +228,13 @@
                                             Kapasitas Pompa (l/s)
                                         </li>
                                         <p>
-                                            <span class="font-bold text-black">DCS/F150H10/30/250</span> : 150 l/s<br>
-                                            <span class="font-bold text-black">DCS/F200H10/37/300</span> : 200 l/s<br>
-                                            <span class="font-bold text-black">DCS/F250H10/45/300</span> : 250 l/s<br>
-                                            <span class="font-bold text-black">DCS/F300H10/45/350</span> : 300 l/s<br>
-                                            <span class="font-bold text-black">DCS/F500H10/75/400</span> : 500 l/s<br>
-                                            <span class="font-bold text-black">DCS/F570H10/132/500</span> : 750 l/s<br>
-                                            <span class="font-bold text-black">DCS/F1000H10/160/500</span> : 1000 l/s<br>
+                                            <span class="font-bold text-black">DAF/F500H6/45/850</span> : 500 l/s<br>
+                                            <span class="font-bold text-black">DAF/F1000H6/90/1000</span> : 1000 l/s<br>
+                                            <span class="font-bold text-black">DAF/F1500H6/132/1000</span> : 1500 l/s<br>
+                                            <span class="font-bold text-black">DAF/F2000H6/200/1100</span> : 2000 l/s<br>
+                                            <span class="font-bold text-black">DAF/F3000H6/250/1200</span> : 3000 l/s<br>
+                                            <span class="font-bold text-black">DAF/F5000H6/400/1500</span> : 5000 l/s<br>
+
                                         </p>
                                     </div>
                                     <div class="mb-10">
