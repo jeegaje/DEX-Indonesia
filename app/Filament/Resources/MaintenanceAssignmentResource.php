@@ -60,6 +60,13 @@ class MaintenanceAssignmentResource extends Resource
                                 'full' => 'Full Maintenance',
                             ])
                             ->hidden(fn ($get) => $form->getRecord() === null),
+                            Select::make('status')
+                            ->label('Status')
+                            ->options([
+                                'active' => 'Aktif',
+                                'inactive' => 'Non Aktif',
+                            ])
+                            ->hidden(fn ($get) => $form->getRecord() === null),
 
                             Select::make('pump_id')
                             ->label('No Seri Pompa')
@@ -137,6 +144,13 @@ class MaintenanceAssignmentResource extends Resource
                         'Teknisi' => 'danger',
                     })
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'inactive' => 'warning',
+                    })
+                    ->searchable(),
 
             ])
             ->filters([
@@ -171,7 +185,24 @@ class MaintenanceAssignmentResource extends Resource
                     ->color('primary') // Warna tombol, bisa diubah sesuai keinginan
                     ->icon('heroicon-o-check')
                     ->button(),
-                
+                Tables\Actions\ActionGroup::make([
+                    Action::make('change_maintenance_status_to_active')
+                        ->label('Aktifkan')
+                        ->color('success')
+                        ->visible(function (Model $record) {
+                            return $record->status == 'inactive';
+                        })
+                        ->action(fn(Model $record) => $record->update(['status' => 'active']))
+                        ->requiresConfirmation(),
+                    Action::make('change_maintenance_status_to_inactive')
+                        ->label('Non Aktifkan')
+                        ->color('danger')
+                        ->visible(function (Model $record) {
+                            return $record->status == 'active';
+                        })
+                        ->action(fn(Model $record) => $record->update(['status' => 'inactive']))
+                        ->requiresConfirmation(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -5,7 +5,7 @@
                 <h1 class="text-2xl font-bold mb-2">Selamat Bekerja</h1>
                 <h2 class="text-xl">{{ $data_technician->name }}</h2>
             </div>
-            <button type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg focus:outline-none dark:text-gray-400" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
+            <button id="buttonOpenSidebar" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg focus:outline-none dark:text-gray-400" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                     <path stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
                 </svg>
@@ -31,6 +31,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const redirectElements = document.querySelectorAll('.redirect-element');
+            const openSidebar = document.getElementById('#buttonOpenSidebar');
+
 
             // Loop melalui setiap elemen dan tambahkan event listener
             redirectElements.forEach(element => {
