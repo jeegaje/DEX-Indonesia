@@ -7,9 +7,12 @@
         <title>Dex Pump - Bersama Membangun Indonesia</title>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-	<link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
+	    <link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
+
+        <script src="https://cdn.jsdelivr.net/npm/lemonadejs/dist/lemonade.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@lemonadejs/signature/dist/index.min.js"></script>
 
         @php
         use Carbon\Carbon;
@@ -34,7 +37,7 @@
 @endif
                 <div class="bg-teal-50 p-7">
                     <div id="tabContentPump">
-                        <form method="POST" action="{{ route('maintenance.upload') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('maintenance.upload') }}" enctype="multipart/form-data" id="maintenanceInput">
                             <div class="hidden rounded-lg" id="target-pump-data" role="tabpanel" aria-labelledby="trigger-pump-data">
                                 @csrf
                                 <input type="hidden" name="maintenance_token" value="{{ request()->query('token') }}">
@@ -64,25 +67,27 @@
                                         <label for="number_of_inspection-input" class="block mb-2 text-sm text-gray-900 dark:text-white">Pemeriksaan</label>
                                         <input type="text" name="pump_data_number_of_inspection" value="{{ $total_of_inspection }}" placeholder="Ketikan di sini" id="number_of_inspection-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     </div>
-                                    <div class="mb-5">
-                                        <label for="running_hours_total-input" class="block mb-2 text-sm text-gray-900 dark:text-white">Running Hours Total</label>
-                                        <div class="flex mb-2">
-                                            <input type="number" name="pump_data_running_hours_total" placeholder="Ketikan di sini" id="running_hours_total-input" class="rounded-none rounded-s-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="">
-                                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-e-md">
-                                                <p>H</p>
-                                            </span>
+                                    <div id="maintenanceInputPumpData">
+                                        <div class="mb-5">
+                                            <label for="running_hours_total-input" class="block mb-2 text-sm text-gray-900 dark:text-white">Running Hours Total</label>
+                                            <div class="flex mb-2">
+                                                <input type="number" name="pump_data_running_hours_total" placeholder="Ketikan di sini" id="running_hours_total-input" class="rounded-none rounded-s-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="">
+                                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-e-md">
+                                                    <p>H</p>
+                                                </span>
+                                            </div>
+                                            <input type="file" name="pump_data_running_hours_total_image" class="filepond text-white"/>
                                         </div>
-                                        <input type="file" name="pump_data_running_hours_total_image" class="filepond text-white"/>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="running_hours_monthly-input" class="block mb-2 text-sm text-gray-900 dark:text-white">Running Hours Bulanan</label>
-                                        <div class="flex mb-2">
-                                            <input type="number" name="pump_data_running_hours_monthly" placeholder="Ketikan di sini" id="running_hours_monthly" class="rounded-none rounded-s-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="">
-                                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-e-md">
-                                                <p>H</p>
-                                            </span>
+                                        <div class="mb-5">
+                                            <label for="running_hours_monthly-input" class="block mb-2 text-sm text-gray-900 dark:text-white">Running Hours Bulanan</label>
+                                            <div class="flex mb-2">
+                                                <input type="number" name="pump_data_running_hours_monthly" placeholder="Ketikan di sini" id="running_hours_monthly" class="rounded-none rounded-s-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="">
+                                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-e-md">
+                                                    <p>H</p>
+                                                </span>
+                                            </div>
+                                            <input type="file" name="pump_data_running_hours_monthly_image" class="filepond"/>
                                         </div>
-                                        <input type="file" name="pump_data_running_hours_monthly_image" class="filepond"/>
                                     </div>
                                 </div>
                                 <div class="flex justify-end">
@@ -1230,56 +1235,13 @@
                                 <div class="flex justify-end">
                                     <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="pipeColumnWaterOutput">kembali</button>
                                     @if ($maintenance_type == 'full')
-                                    <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="megger">Lanjut</button>
+                                    <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="insulation">Lanjut</button>
                                     @else
                                     <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="documentation">Lanjut</button>
                                     @endif
                                 </div>
                             </div>
                             @if ($maintenance_type == 'full')
-                            <div
-                                class="hidden rounded-lg"
-                                id="target-megger"
-                                role="tabpanel"
-                                aria-labelledby="trigger-megger"
-                            >
-                                <button type="button" class="text-blue-500 bg-white border border-gray-300 pointer-events-none rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Megger</button>
-                                <div class="rounded-lg bg-gray-50 p-4">
-                                    <div class="mb-5">
-                                        <label for="megger_technician" class="block mb-2 text-sm text-gray-900 dark:text-white">Tim Teknisi</label>
-                                        <input type="text" value="{{ $data_technician->name }}" placeholder="Ketikan di sini" id="megger_technician" name="megger_technician" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="megger_location" class="block mb-2 text-sm text-gray-900 dark:text-white">Lokasi Pompa</label>
-                                        <input type="text" value="{{ $data_pump->location }}" placeholder="Ketikan di sini" id="megger_location" name="megger_location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="megger_serial_number" class="block mb-2 text-sm text-gray-900 dark:text-white">No Unit Pompa</label>
-                                        <input type="text" value="{{ $data_pump->serial_number }}" placeholder="Ketikan di sini" id="megger_serial_number" name="megger_serial_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="megger_unit" class="block mb-2 text-sm text-gray-900 dark:text-white">No Seri Pompa</label>
-                                        <input type="text" value="{{ $data_pump->unit }}" placeholder="Ketikan di sini" id="megger_unit" name="megger_unit" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="megger_date" class="block mb-2 text-sm text-gray-900 dark:text-white">Tanggal</label>
-                                        <input type="text" value="{{ Carbon::now()->format('d/m/Y') }}" placeholder="25/10/2024" id="megger_date" name="megger_date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" readonly>
-                                    </div>
-                                    <div class="mb-5">
-                                        <label for="megger_running_hours" class="block mb-2 text-sm text-gray-900 dark:text-white">Running Hours</label>
-                                        <div class="flex">
-                                            <input type="text" placeholder="Ketikan di sini" id="megger_running_hours" name="megger_running_hours" class="rounded-none rounded-s-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5" placeholder="">
-                                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-e-md">
-                                                <p>H</p>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex justify-end">
-                                    <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="testCensor">kembali</button>
-                                    <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="insulation">Lanjut</button>
-                                </div>
-                            </div>
                             <div
                                 class="hidden rounded-lg"
                                 id="target-insulation"
@@ -1426,7 +1388,7 @@
                                     </div>
                                 </div>
                                 <div class="flex justify-end">
-                                    <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="megger">kembali</button>
+                                    <button type="button" class="text-white font-semibold bg-red-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="test-censor">kembali</button>
                                     <button type="button" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 mb-2 button-tab-trigger" data-tab-target="resistance">Lanjut</button>
                                 </div>
                             </div>
@@ -1734,14 +1696,47 @@
                                                     <label for="maintenance_note" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Catatan Teknisi</label>
                                                     <p class="mb-2 text-sm text-gray-900">Tambahkan catatan kegiatan maintenance, pastikan semua telah terisi dengan benar, dan jangan lupa untuk menambahkan tanda tangan teknisi & Operator</p>
                                                     <textarea id="maintenance_note" name="maintenance_note" rows="4" class="mb-2 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulis Catatan Teknisi"></textarea>
-                                                    <label for="maintenance_signature" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">TTD Operator & Teknisi</label>
-                                                    <input type="file" name="maintenance_signature" class="filepond">                
+                                                    <label for="technician_signature" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">TTD Teknisi <span class="text-red-500 font-bold">*</span></label>
+                                                    <input type="text" name="technician_signature" id="technician_signature" hidden>
+                                                    <div class="border border-gray-300 my-2" id='root'></div>
+                                                    <button 
+                                                        type="button" 
+                                                        class="hidden text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
+                                                        id="resetCanvas">
+                                                        Reset
+                                                    </button>
+                                                    <button 
+                                                        type="button" 
+                                                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+                                                        id="getImage">
+                                                        Save
+                                                    </button>
+                                                    <label for="technician_signature" class="block my-2 text-sm font-medium text-gray-900 dark:text-white">TTD Operator <span class="text-red-500 font-bold">*</span></label>
+                                                    <input type="text" name="operator_signature" id="operator_signature" hidden>
+                                                    <div class="border border-gray-300 my-2" id='inputOperatorSignature'></div>
+                                                    <button 
+                                                        type="button" 
+                                                        class="hidden text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
+                                                        id="resetCanvasOperatorSignature">
+                                                        Reset
+                                                    </button>
+                                                    <button 
+                                                        type="button" 
+                                                        class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+                                                        id="getImageOperatorSignature">
+                                                        Save
+                                                    </button>
                                                 </div>
                                             </div>
+                                            <p class="text-red-500 italic text-sm mb-2" >* TTD Teknisi dan Operator wajib untuk diisi</p>
                                             <button type="button" aria-hidden="true" data-modal-toggle="crud-modal" class="text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                                 Cek Kembali
                                             </button>
-                                            <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            <button 
+                                                type="submit" 
+                                                id="submitAll"
+                                                class="text-white inline-flex items-center bg-gray-400 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                                disabled >
                                                 Simpan
                                             </button>
                                         </div>
@@ -1757,6 +1752,248 @@
         @livewireScripts
         <script>
             document.addEventListener('DOMContentLoaded', function () {
+
+                function updateProgress() {
+                    @if ($maintenance_type == 'full')
+                    const progressData = [
+                        {
+                            inputId: '#maintenanceInputPumpData',
+                            targetId: 'sidebarMaintenancePumpData',
+                            range: 4,
+                        },
+                        {
+                            inputId: '#target-lvmdp',
+                            targetId: 'sidebarMaintenanceLvmdp',
+                            range: 9,
+                        },
+                        {
+                            inputId: '#target-junction-box',
+                            targetId: 'sidebarMaintenanceJunctionBox',
+                            range: 5,
+                        },
+                        {
+                            inputId: '#target-panel',
+                            targetId: 'sidebarMaintenancePanel',
+                            range: 5,
+                        },
+                        {
+                            inputId: '#target-panel-function',
+                            targetId: 'sidebarMaintenancePanelFunction',
+                            range: 13,
+                        },
+                        {
+                            inputId: '#target-elektrikal-mekanikal',
+                            targetId: 'sidebarMaintenanceElectricalMechanical',
+                            range: 78,
+                        },
+                        {
+                            inputId: '#target-pipe-column-water-output',
+                            targetId: 'sidebarMaintenancePipeColumnWaterOutput',
+                            range: 7,
+                        },
+                        {
+                            inputId: '#target-test-censor',
+                            targetId: 'sidebarMaintenanceTestCensor',
+                            range: 24,
+                        },
+                        {
+                            inputId: '#target-insulation',
+                            targetId: 'sidebarMaintenanceInsulation',
+                            range: 18,
+                        },
+                        {
+                            inputId: '#target-resistance',
+                            targetId: 'sidebarMaintenanceResistance',
+                            range: 8,
+                        },
+                        {
+                            inputId: '#target-pump-condition',
+                            targetId: 'sidebarMaintenancePumpCondition',
+                            range: 14,
+                        },
+                        {
+                            inputId: '#target-documentation',
+                            targetId: 'sidebarMaintenanceDocumentation',
+                            range: 14,
+                        }
+                    ]
+                    @else
+                    const progressData = [
+                        {
+                            inputId: '#maintenanceInputPumpData',
+                            targetId: 'sidebarMaintenancePumpData',
+                            range: 4,
+                        },
+                        {
+                            inputId: '#target-lvmdp',
+                            targetId: 'sidebarMaintenanceLvmdp',
+                            range: 9,
+                        },
+                        {
+                            inputId: '#target-junction-box',
+                            targetId: 'sidebarMaintenanceJunctionBox',
+                            range: 5,
+                        },
+                        {
+                            inputId: '#target-panel',
+                            targetId: 'sidebarMaintenancePanel',
+                            range: 5,
+                        },
+                        {
+                            inputId: '#target-panel-function',
+                            targetId: 'sidebarMaintenancePanelFunction',
+                            range: 13,
+                        },
+                        {
+                            inputId: '#target-elektrikal-mekanikal',
+                            targetId: 'sidebarMaintenanceElectricalMechanical',
+                            range: 78,
+                        },
+                        {
+                            inputId: '#target-pipe-column-water-output',
+                            targetId: 'sidebarMaintenancePipeColumnWaterOutput',
+                            range: 7,
+                        },
+                        {
+                            inputId: '#target-test-censor',
+                            targetId: 'sidebarMaintenanceTestCensor',
+                            range: 24,
+                        },
+                        {
+                            inputId: '#target-documentation',
+                            targetId: 'sidebarMaintenanceDocumentation',
+                            range: 14,
+                        }
+                    ]
+                    @endif
+
+                    progressData.forEach(item => {
+                        const inputs = document.querySelectorAll(item.inputId + ' input');
+                        const filledFields = Array.from(inputs).filter(input => {
+                                if (input.type != 'radio') {
+                                    return input.value.trim() !== ''
+                                } else {
+                                    return input.checked
+                                }
+                            }
+                        ).length;
+
+                            
+                        const sidebarMaintenancePumpData = document.getElementById(item.targetId);
+
+                        console.log(inputs)
+    
+                        sidebarMaintenancePumpData.innerHTML = '';
+
+                        const percent = (filledFields / item.range) * 100
+    
+                        sidebarMaintenancePumpData.innerHTML += '<div class="w-full bg-gray-200 rounded-full my-1 h-2.5 dark:bg-gray-700"><div class="bg-blue-600 h-2.5 rounded-full" style="width: ' + percent + '%"></div></div>';
+
+                        // for (let index = 1; index <= item.range; index++) {
+                        //     if (index <= filledFields) {
+                        //         sidebarMaintenancePumpData.innerHTML += '<div class="w-full bg-gray-200 rounded-full my-1 h-2.5 dark:bg-gray-700"><div class="bg-blue-600 h-2.5 rounded-full" style="width: 10%"></div></div>';
+                        //     } else {
+                        //         sidebarMaintenancePumpData.innerHTML += '<div class="w-full bg-gray-200 rounded-full my-1 h-2.5 dark:bg-gray-700"><div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div></div>';
+                        //     }
+                        // }
+                        // if (item.range > 12) {
+                        //     sidebarMaintenancePumpData.innerHTML += '<div class="col-span-12">' + filledFields + '/' + item.range + '</div>';
+                        // } else {
+                            sidebarMaintenancePumpData.innerHTML += filledFields + '/' + item.range;
+                        // }
+                    });
+                }
+
+                // Attach event listener to all inputs
+                const inputs = document.querySelectorAll('#maintenanceInput input');
+                inputs.forEach(input => {
+                    input.addEventListener('input', updateProgress);
+                });
+
+                const openSidebar = document.getElementById('buttonOpenSidebar');
+                openSidebar.addEventListener('click', updateProgress);
+
+                
+
+
+                const root = document.getElementById("root")
+                const resetCanvas = document.getElementById("resetCanvas")
+                const getImage = document.getElementById("getImage")
+                const technicianSignature = document.getElementById("technician_signature")
+                // Call signature with the root element and the options object, saving its reference in a variable
+                const component = Signature(root, {
+                    width: 300,
+                    height: 300,
+                });
+
+                const inputOperatorSignature = document.getElementById("inputOperatorSignature")
+                const resetCanvasOperatorSignature = document.getElementById("resetCanvasOperatorSignature")
+                const getImageOperatorSignature = document.getElementById("getImageOperatorSignature")
+                const maintenanceOperatorSignature = document.getElementById("operator_signature")
+                // Call signature with the root element and the options object, saving its reference in a variable
+                const componentOperatorSignature = Signature(inputOperatorSignature, {
+                    width: 300,
+                    height: 300,
+                });
+
+
+                const submitButton = document.getElementById("submitAll")
+
+                // Fungsi untuk memeriksa apakah kedua input telah diisi
+                function checkInputs() {
+                    // Jika kedua input terisi, aktifkan tombol submit
+                    if (technicianSignature.value.trim() !== '' && maintenanceOperatorSignature.value.trim() !== '') {
+                        submitButton.disabled = false; // Mengaktifkan tombol submit
+                        submitButton.classList.add('hover:bg-blue-800')
+                        submitButton.classList.add('bg-blue-700')
+                        submitButton.classList.remove('bg-gray-400')
+
+                    } else {
+                        submitButton.disabled = true; // Menonaktifkan tombol submit
+                        submitButton.classList.remove('hover:bg-blue-800')
+                        submitButton.classList.remove('bg-blue-700')
+                        submitButton.classList.add('bg-gray-400')
+                    }
+                }
+
+                // Memanggil checkInputs sekali saat halaman dimuat untuk memastikan status tombol submit
+                checkInputs();
+
+                resetCanvas.addEventListener("click", () => {
+                    resetCanvas.classList.add('hidden')
+                    getImage.classList.remove('hidden')
+                    component.value = [];
+                    technicianSignature.value = null;
+                    checkInputs();
+                });
+
+                getImage.addEventListener("click", () => {
+                    console.log(component.getImage())
+                    resetCanvas.classList.remove('hidden')
+                    getImage.classList.add('hidden')
+                    technicianSignature.value = component.getImage();
+                    checkInputs();
+                });
+
+
+
+
+                resetCanvasOperatorSignature.addEventListener("click", () => {
+                    resetCanvasOperatorSignature.classList.add('hidden')
+                    getImageOperatorSignature.classList.remove('hidden')
+                    componentOperatorSignature.value = [];
+                    maintenanceOperatorSignature.value = null;
+                    checkInputs();
+                });
+
+                getImageOperatorSignature.addEventListener("click", () => {
+                    console.log(componentOperatorSignature.getImage())
+                    resetCanvasOperatorSignature.classList.remove('hidden')
+                    getImageOperatorSignature.classList.add('hidden')
+                    maintenanceOperatorSignature.value = componentOperatorSignature.getImage();
+                    checkInputs();
+                });
+
                 const tabsElement = document.getElementById('tabs-example');
         
                 @if ($maintenance_type == 'full')
@@ -1801,11 +2038,6 @@
                         id: 'testCensor',
                         triggerEl: document.querySelector('#trigger-test-censor'),
                         targetEl: document.querySelector('#target-test-censor'),
-                    },
-                    {
-                        id: 'megger',
-                        triggerEl: document.querySelector('#trigger-megger'),
-                        targetEl: document.querySelector('#target-megger'),
                     },
                     {
                         id: 'insulation',
@@ -1912,6 +2144,9 @@
                         window.location.href = targetUrl; // Redirect ke URL yang ditentukan
                     }
                 });
+
+
+
             });
 
             

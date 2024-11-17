@@ -13,397 +13,72 @@
        <ul class="space-y-6 font-medium" id="tabs-example" role="tablist">
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer"  id="trigger-pump-data" aria-controls="target-pump-data" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Data Pompa</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31sx]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenancePumpData">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-lvmdp" aria-controls="target-lvmdp" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Lvmdp</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceLvmdp">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-junction-box" aria-controls="target-junction-box" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Junction Box</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[30px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceJunctionBox">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-panel" aria-controls="target-panel" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Panel</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenancePanel">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-panel-function" aria-controls="target-panel-function" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Fungsi Panel</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenancePanelFunction">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-elektrikal-mekanikal" aria-controls="target-elektrikal-mekanikal" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Elektrikal & Mekanikal</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceElectricalMechanical">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-pipe-column-water-output" aria-controls="target-pipe-column-water-output" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Pipa Kolom & Output Air</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenancePipeColumnWaterOutput">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-test-censor" aria-controls="target-test-censor" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Sensor Test</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceTestCensor">
             </div>
           </li>
           @if ($maintenance_type == 'full')
-          <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-megger" aria-controls="target-megger" data-drawer-hide="drawer-navigation">
-            <h3 class="mb-3 text-lg">Megger</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
-            </div>
-          </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-insulation" aria-controls="target-insulation" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Insulasi</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceInsulation">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-resistance" aria-controls="target-resistance" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Resistensi</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceResistance">
             </div>
           </li>
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-pump-condition" aria-controls="target-pump-condition" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Kondisi Pompa</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenancePumpCondition">
             </div>
           </li>
           @endif
           <li class="p-6 bg-white border border-gray-200 rounded-lg cursor-pointer" id="trigger-documentation" aria-controls="target-documentation" data-drawer-hide="drawer-navigation">
             <h3 class="mb-3 text-lg">Dokumentasi</h3>
-            <div class="flex gap-2 items-center">
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700 w-[31px]">
-                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
-                </div>
-                <p class="ms-5">1/8</p>
+            <div class="flex gap-2 items-center" id="sidebarMaintenanceDocumentation">
             </div>
           </li>
        </ul>
+       <div class="flex justify-end">
+           <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="text-white font-semibold bg-blue-600 border border-gray-300 rounded-lg text-sm px-6 py-2.5 me-2 my-5" type="button">
+            Submit
+           </button>
+       </div>
     </div>
  </div>
  
