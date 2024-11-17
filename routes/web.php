@@ -29,6 +29,8 @@ use Spatie\LaravelPdf\Facades\Pdf;
 
 
 Route::get('/maintenance/create', [MaintenanceController::class, 'create'])->name('maintenance.create');
+Route::get('/maintenance/created', [MaintenanceController::class, 'created'])->name('maintenance.created');
+
 Route::post('/maintenance/store', [MaintenanceController::class, 'store'])->name('maintenance.store');
 
 Route::post('/maintenance/store/upload', [MaintenanceController::class, 'testUpload'])->name('maintenance.upload');

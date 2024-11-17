@@ -234,7 +234,6 @@
                                             <span class="font-bold text-black">DAF/F2000H6/200/1100</span> : 2000 l/s<br>
                                             <span class="font-bold text-black">DAF/F3000H6/250/1200</span> : 3000 l/s<br>
                                             <span class="font-bold text-black">DAF/F5000H6/400/1500</span> : 5000 l/s<br>
-
                                         </p>
                                     </div>
                                     <div class="mb-10">
