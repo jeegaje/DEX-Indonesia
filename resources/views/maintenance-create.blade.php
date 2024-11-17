@@ -7,7 +7,7 @@
         <title>Dex Pump - Bersama Membangun Indonesia</title>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-	<link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
+	    <link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
 

@@ -4,9 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Laravel</title>
+        <title>Dex Pump - Bersama Membangun Indonesia</title>
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
+	    <link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
 
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles
