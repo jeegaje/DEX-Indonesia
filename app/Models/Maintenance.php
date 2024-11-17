@@ -23,22 +23,22 @@ class Maintenance extends Model
 
     public function maintenanceLvmdp(): HasOne
     {
-        return $this->hasOne(maintenanceLvmdp::class);
+        return $this->hasOne(MaintenanceLvmdp::class);
     }
 
     public function maintenanceJunctionBox(): HasOne
     {
-        return $this->hasOne(maintenanceJunctionBox::class);
+        return $this->hasOne(MaintenanceJunctionBox::class);
     }
 
     public function maintenancePanel(): HasOne
     {
-        return $this->hasOne(maintenancePanel::class);
+        return $this->hasOne(MaintenancePanel::class);
     }
 
     public function maintenancePanelFunction(): HasOne
     {
-        return $this->hasOne(maintenancePanelFunction::class);
+        return $this->hasOne(MaintenancePanelFunction::class);
     }
 
     public function maintenanceElectroMechanical(): HasOne
