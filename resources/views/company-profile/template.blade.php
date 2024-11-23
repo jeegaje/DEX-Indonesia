@@ -10,7 +10,7 @@
         @livewireStyles
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/logo-white.png') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('images/dex-logo.png') }}">
         <style>
         .swiper {
             width: 100%;
