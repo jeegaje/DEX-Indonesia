@@ -20,10 +20,8 @@ use App\Models\MaintenanceSensorTest;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -96,9 +94,8 @@ class MaintenanceController extends Controller
         return view('maintenance-created');
     }
 
-    public function generateReport(Request $request, $id)
+    public function previewReport(Request $request, $id)
     {
-
         $maintenance = Maintenance::with([
             'maintenanceAssignment',
             'maintenancePumpData',
@@ -202,31 +199,11 @@ class MaintenanceController extends Controller
             $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
         };
 
-        // dd($maintenanceDocumentation);
-    
-        $html = view('company-profile.pdf', [
+        return view('company-profile.pdf',  [
             'maintenance' => $maintenance,
             'dataCurve' => $dataCurve,
             'maintenanceDocumentation' => $maintenanceDocumentation
-        ])->render();
-
-        // $pdf = Browsershot::html($html)
-        //     ->showBackground()
-        //     ->paperSize(210, 330, 'mm')
-    
-        //     ->pdf();
-            // ->save('pdf-' . Str::random(10) . '.pdf');
-
-            $pdf = App::make('dompdf.wrapper');
-            $pdf->loadHTML($html);
-            return $pdf->stream();
-    
-    
-        return new Response($pdf, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Dispotition' => 'inline; filenames="report.pdf'
         ]);
-    
     }
 
     public function testUpload(Request $request) {
