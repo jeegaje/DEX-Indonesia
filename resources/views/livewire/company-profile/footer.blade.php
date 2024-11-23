@@ -13,7 +13,7 @@
             </div>
             <div class="flex flex-col flex-1">
                 <div class="text-white py-10 flex items-center gap-5">
-                    <p class="text-center">Download Company Profile PT Pompa Dex Indoguna </p>
+                    <p class="text-center">Download Company Profile PT Pompa DEX Indoguna </p>
                     <a href="{{ route('file.download', ['path' => $company_profile->path]) }}"  class="py-2 px-3 bg-blue-600 rounded-md text-white">Download</a>
                 </div>
                 <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -71,7 +71,7 @@
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         <div class="sm:flex sm:items-center sm:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright © 2024 <a href="{{ url('/') }}" class="hover:underline">Dex Pump</a>. All Rights Reserved.
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright © 2024 <a href="{{ url('/') }}" class="hover:underline">DEX Pump</a>. All Rights Reserved.
             </span>
             <div class="flex mt-4 space-x-6 sm:justify-center sm:mt-0">
                 <a href="https://www.youtube.com/@dexpumpindonesia6971" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">

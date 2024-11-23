@@ -24,7 +24,7 @@ class GaleryDexResource extends Resource
 
     protected static ?string $cluster = MediaDocument::class;
 
-    protected static ?string $navigationLabel = 'Galery Dex';
+    protected static ?string $navigationLabel = 'Galery DEX';
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
     
@@ -41,7 +41,7 @@ class GaleryDexResource extends Resource
                     'sm' => 2,
                 ]),
             Forms\Components\FileUpload::make('path')
-                ->label('Galery Dex')
+                ->label('Galery DEX')
                 ->directory('media-document/galery-dex')
                 ->columnSpan([
                     'sm' => 2,
@@ -106,6 +106,6 @@ class GaleryDexResource extends Resource
 
     public static function getBreadcrumb(): string
     {
-        return 'Galery Dex';
+        return 'Galery DEX';
     }
 }

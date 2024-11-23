@@ -5,7 +5,7 @@
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
                 <div class="text-center">
                     <h1 class="text-2xl font-bold mb-5 text-[#0756FF]">Peta Sebaran Project</h1>
-                    <p class="text-md">Berikut Merupakan Wilayah Yang Sudah Mempercayakan Solusi Permasalahan Banjir Ke Pompa Dex</p>
+                    <p class="text-md">Berikut Merupakan Wilayah Yang Sudah Mempercayakan Solusi Permasalahan Banjir Ke Pompa DEX</p>
                 </div>
                 <div class="flex md:flex-row flex-col gap-5 justify-center items-center my-10">
                     <div class="flex gap-1 items-end flex-1">
@@ -39,7 +39,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-8 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h1 class="text-2xl font-bold">Dex Pump Galery</h1>
+                    <h1 class="text-2xl font-bold">DEX Pump Galery</h1>
                     <p class="text-xl ">Kumpulan dokumentasi visual dari berbagai proyek pemasangan, distribusi, dan pemeliharaan pompa kami.</p>
                 </div>
                 <div class="grid grid-cols-4 gap-4 items-stretch">
@@ -63,7 +63,7 @@
                                     <!-- Modal header -->
                                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Galery Dex
+                                            Galery DEX
                                         </h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
