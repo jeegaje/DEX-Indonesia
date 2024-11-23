@@ -1528,12 +1528,12 @@
                     </div>
                     <div class="flex gap-1 justify-center p-2 bg-gray-200">
                         <div class="flex flex-col items-center justify-between bg-white w-48 h-32">
-                            <p class="text-xs">Teknisi Dex</p>
+                            <p class="text-xs">Teknisi DEX</p>
                             <img src="" alt="">
                             <p class="text-xs">Gilang</p>
                         </div>
                         <div class="flex flex-col items-center justify-between bg-white w-48 h-32">
-                            <p class="text-xs">Menejemn Dex</p>
+                            <p class="text-xs">Menejemn DEX</p>
                             <img src="" alt="">
                             <p class="text-xs">Tommy</p>
                         </div>

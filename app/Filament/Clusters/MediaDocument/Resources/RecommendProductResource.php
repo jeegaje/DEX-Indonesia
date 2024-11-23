@@ -42,7 +42,7 @@ class RecommendProductResource extends Resource
                 ])
                 ->searchable(),
             Forms\Components\FileUpload::make('path')
-                ->label('Galery Dex')
+                ->label('Galery DEX')
                 ->directory('media-document/documentation-product')
                 ->columnSpan([
                     'sm' => 2,

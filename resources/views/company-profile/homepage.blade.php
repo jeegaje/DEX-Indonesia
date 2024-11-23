@@ -4,7 +4,7 @@
         <section class="bg-white dark:bg-gray-900">
             <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="mr-auto place-self-center lg:col-span-7">
-                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white mb-10">Bersama Dex <hr> Membangun <hr> Indonesia</h1>
+                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white mb-10">Bersama DEX <hr> Membangun <hr> Indonesia</h1>
                     <img src="{{ asset('images/company-profile/line-hero.png') }}" alt="mockup" class="mb-10">
                     <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Selama bertahun-tahun DEX telah berkontribusi dalam memberikan solusi pendistribusian pompa dengan memberikan inovasi & fasilitas terbaik pada produk & layanan</p>
                     <a href="/about" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-white border border-gray-300 rounded-full hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 bg-[#0756FF]">
@@ -22,7 +22,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h1 class="text-2xl font-bold">Visi dan Misi <span class="text-[#0756FF]">Dex</span></h1>
+                    <h1 class="text-2xl font-bold">Visi dan Misi <span class="text-[#0756FF]">DEX</span></h1>
                     <p class="text-xl ">Setiap langkah yang kami ambil selalu didorong oleh visi yang jelas dan misi yang kuat.</p>
                 </div>
                 <div class="flex md:flex-row flex-col gap-10 align-bottom">
@@ -95,7 +95,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h1 class="text-2xl font-bold">Dex Pump Galery</h1>
+                    <h1 class="text-2xl font-bold">DEX Pump Galery</h1>
                     <p class="text-xl ">Kumpulan dokumentasi visual dari berbagai proyek pemasangan, distribusi, dan pemeliharaan pompa kami.</p>
                 </div>
                 <div class="grid grid-cols-4 gap-4">
@@ -108,7 +108,7 @@
                                     <!-- Modal header -->
                                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Galery Dex
+                                            Galery DEX
                                         </h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -136,7 +136,7 @@
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
                     <h1 class="text-2xl font-bold text-[#0756FF]">Peta Sebaran Project</h1>
-                    <p class="text-xl ">Berikut Merupakan Wilayah Yang Sudah Mempercayakan Solusi Permasalahan Banjir Ke Pompa Dex</p>
+                    <p class="text-xl ">Berikut Merupakan Wilayah Yang Sudah Mempercayakan Solusi Permasalahan Banjir Ke Pompa DEX</p>
                 </div>
                 <div class="flex md:flex-row flex-col gap-5 justify-center items-center my-10">
                     <div class="flex gap-1 items-end flex-1">
@@ -170,7 +170,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h1 class="text-2xl font-bold text-[#0756FF]">Dex Pump Product</h1>
+                    <h1 class="text-2xl font-bold text-[#0756FF]">DEX Pump Product</h1>
                 </div>
                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                     <ul class="flex flex-wrap justify-center -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
@@ -320,7 +320,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 mb-10">
-                    <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                    <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                     <button type="button" class="text-[#0756FF] border-1 border-[#0756FF]">Lihat Semua</button>
                 </div>
                 <div class="flex md:flex-row flex-col gap-5">

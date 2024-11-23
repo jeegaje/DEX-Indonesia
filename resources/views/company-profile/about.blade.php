@@ -7,7 +7,7 @@
                     <img src="{{ asset('images/about/hero-section.png') }}" alt="mockup" class="w-full">
                 </div>  
                 <div class="mr-auto place-self-center lg:col-span-7 lg:ml-16 ml-0">
-                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white mb-10"><span class="text-[#0756FF]">Dex</span><hr> Visi & Misi</h1>
+                    <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white mb-10"><span class="text-[#0756FF]">DEX</span><hr> Visi & Misi</h1>
                     <div>
                         <div class="flex items-end gap-5 mb-2 justify-start">
                             <h2 class="text-2xl text-[#0756FF] text-center font-bold">Visi</h2>
@@ -72,7 +72,7 @@
         <section class="bg-[#F4F7FA]">
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h2 class="text-xl font-bold text-[#0756FF]">Kenapa Harus Memilih Dex</h1>
+                    <h2 class="text-xl font-bold text-[#0756FF]">Kenapa Harus Memilih DEX</h1>
                     <h1 class="text-2xl font-bold">Inovatif, Terpercaya, Profesional</h1>
                     <p class="text-xl "> kami menawarkan distribusi, Pendampingan, dan pemeliharaan pompa Anda, Berikut alasan mengapa solusi kami adalah pilihan terbaik untuk anda</p>
                 </div>
@@ -144,7 +144,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="text-center mb-10">
-                    <h1 class="text-2xl font-bold">Dex Pump Galery</h1>
+                    <h1 class="text-2xl font-bold">DEX Pump Galery</h1>
                     <p class="text-xl ">Kumpulan dokumentasi visual dari berbagai proyek pemasangan, distribusi, dan pemeliharaan pompa kami.</p>
                 </div>
                 <div class="grid grid-cols-4 gap-4 items-stretch">
@@ -168,7 +168,7 @@
                                     <!-- Modal header -->
                                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                                            Galery Dex
+                                            Galery DEX
                                         </h3>
                                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
                                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

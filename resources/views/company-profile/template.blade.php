@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title>Dex Pump - Bersama Membangun Indonesia</title>
+        <title>DEX Pump - Bersama Membangun Indonesia</title>
 
         @vite(['resources/css/app.css','resources/js/app.js'])
         @livewireStyles

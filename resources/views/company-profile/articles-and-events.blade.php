@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 my-10">
-                    <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                    <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                     <button type="button" class="text-[#0756FF] border-1 border-[#0756FF]">Lihat Semua</button>
                 </div>
                 <div class="grid md:grid-cols-3 grid-cols-1 gap-5 items-start">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="">
                         <div class="rounded-lg bg-blue-950 py-16 px-10 text-center">
-                            <h3 class="text-white text-xl font-bold">Dex Activity</h3>
+                            <h3 class="text-white text-xl font-bold">DEX Activity</h3>
                             <p class="text-white mb-5">Lihat kegiatan yang kami lakukan melalui kanal media kami lainnya</p>
                             <div class="flex justify-center items-center gap-5">
                                 <a href="https://www.instagram.com/dexpumpid/" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">

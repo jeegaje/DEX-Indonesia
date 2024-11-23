@@ -4,7 +4,7 @@
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 my-5">
-                    <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                    <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                 </div>
                 <div class="grid grid-cols-3 gap-5 items-start">
                     <div class="grid grid-cols-2 gap-5 col-span-2">
@@ -85,7 +85,7 @@
                     </div>
                     <div class="">
                         <div class="rounded-lg bg-blue-950 py-16 px-10 text-center">
-                            <h3 class="text-white text-xl font-bold">Dex Activity</h3>
+                            <h3 class="text-white text-xl font-bold">DEX Activity</h3>
                             <p class="text-white mb-5">Lihat kegiatan yang kami lakukan melalui kanal media kami lainnya</p>
                             <div class="flex flex-col items-center gap-5">
                                 <button class="px-5 py-2 w-32 rounded-md bg-white">Youtube</button>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="my-5">
-                            <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                            <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                             <div class="flex flex-col text-gray-900">
                                 <div class="grid grid-cols-4 gap-5 border-b-2 border-gray-200 py-5">
                                     <div class="col-span-3">
@@ -164,7 +164,7 @@
                             </div>
                         </div>
                         <div class="my-5">
-                            <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                            <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                             <div class="h-20 rounded-lg flex items-center p-2 my-4" style="background-repeat: no-repeat; background-size: cover; background-position: center; background-image:
     linear-gradient(to left, rgba(155, 155, 155, 0.52), rgba(0, 0, 0, 0.73)),
     url('{{ asset('images/company-profile/galery-1.png') }}');">
