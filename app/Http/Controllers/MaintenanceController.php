@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Hash;
@@ -209,12 +210,16 @@ class MaintenanceController extends Controller
             'maintenanceDocumentation' => $maintenanceDocumentation
         ])->render();
 
-        $pdf = Browsershot::html($html)
-            ->showBackground()
-            ->paperSize(210, 330, 'mm')
+        // $pdf = Browsershot::html($html)
+        //     ->showBackground()
+        //     ->paperSize(210, 330, 'mm')
     
-            ->pdf();
+        //     ->pdf();
             // ->save('pdf-' . Str::random(10) . '.pdf');
+
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML($html);
+            return $pdf->stream();
     
     
         return new Response($pdf, 200, [
