@@ -54,7 +54,17 @@ class GaleryDexResource extends Resource
                     'video' => 'Video' 
                 ])
                 ->helperText('The input type must match the uploaded file')
+                ->reactive()
+                ->afterStateUpdated(fn ($state, callable $set) => $set('is_video', $state === 'video'))
                 ->searchable(),
+            Forms\Components\FileUpload::make('thumbnail_path')
+                ->label('Thumbnail')
+                ->directory('media-document/galery-dex')
+                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
+                ->columnSpan([
+                    'sm' => 2,
+                ])
+                ->visible(fn ($get) => $get('is_video')),
             Forms\Components\TextInput::make('caption')
                 ->label('Caption')
                 ->columnSpan([
