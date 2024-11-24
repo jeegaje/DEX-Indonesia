@@ -2143,6 +2143,14 @@
             </div>
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['water_level'] || 
+                $maintenanceDocumentation['tightening_panel_bolts'] || 
+                $maintenanceDocumentation['cleaning_panel_with_cloth'] || 
+                $maintenanceDocumentation['cleaning_panel_with_brush'] || 
+                $maintenanceDocumentation['cleaning_panel_with_vacuum'] || 
+                $maintenanceDocumentation['panel_condition_after_cleaning']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2157,50 +2165,60 @@
                         <h1 class="text-center font-bold text-white">DOKUMENTASI PEMELIHARAAN POMPA DEX</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['water_level'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">pH Air</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['water_level'] }}" alt="">
-                                @if ($maintenanceDocumentation['water_level']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['water_level']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['tightening_panel_bolts'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Mengencangkan Baut Panel</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['tightening_panel_bolts'] }}" alt="">
-                                @if ($maintenanceDocumentation['tightening_panel_bolts']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['tightening_panel_bolts']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['cleaning_panel_with_cloth'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Membersihkan Panel dengan Kain</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['cleaning_panel_with_cloth'] }}" alt="">
-                                @if ($maintenanceDocumentation['cleaning_panel_with_cloth']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['cleaning_panel_with_cloth']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['cleaning_panel_with_brush'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Membersihkan Panel dengan Kuas</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['cleaning_panel_with_brush'] }}" alt="">
-                                @if ($maintenanceDocumentation['cleaning_panel_with_brush']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['cleaning_panel_with_brush']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['cleaning_panel_with_vacuum'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Membersihkan Panel dengan Vacuum</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['cleaning_panel_with_vacuum'] }}" alt="">
-                                @if ($maintenanceDocumentation['cleaning_panel_with_vacuum']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['cleaning_panel_with_vacuum']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['panel_condition_after_cleaning'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Kondisi Panel setelah dibersihkan</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['panel_condition_after_cleaning'] }}" alt="">
-                                @if ($maintenanceDocumentation['panel_condition_after_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['panel_condition_after_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
-            
-                        
+                        @endif
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
@@ -2217,8 +2235,17 @@
                     </div>
                 </footer>
             </div>
+            @endif
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['40_hz_kw_image_path'] || 
+                $maintenanceDocumentation['45_hz_kw_image_path'] || 
+                $maintenanceDocumentation['50_hz_kw_image_path'] || 
+                $maintenanceDocumentation['50_hz_vibration_image_path'] || 
+                $maintenanceDocumentation['50_hz_sound_image_path'] || 
+                $maintenanceDocumentation['50_hz_sound_image_path']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2233,48 +2260,60 @@
                         <h1 class="text-center font-bold text-white">DOKUMENTASI PEMELIHARAAN POMPA DEX</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['40_hz_kw_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Daya dan Arus Output Saat f = 40Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['40_hz_kw_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['40_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['40_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['45_hz_kw_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Daya dan Arus Output Saat f = 45Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['45_hz_kw_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['45_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['45_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['50_hz_kw_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Daya dan Arus Output Saat f = 50Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['50_hz_kw_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['50_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['50_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['50_hz_vibration_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Vibrasi Saat f = 50Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['50_hz_vibration_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['50_hz_vibration_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['50_hz_vibration_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['50_hz_sound_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Kebisingan Saat f = 50Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['50_hz_sound_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['50_hz_sound_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['50_hz_sound_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['50_hz_sound_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Suhu Kabel Saat f = 50Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['50_hz_cable_1_temperature_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['50_hz_cable_1_temperature_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['50_hz_cable_1_temperature_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
-                        </div>            
+                        </div>   
+                        @endif         
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
@@ -2291,8 +2330,16 @@
                     </div>
                 </footer>
             </div>
+            @endif
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['40_hz_rpm_image_path'] || 
+                $maintenanceDocumentation['45_hz_kw_image_path'] || 
+                $maintenanceDocumentation['50_hz_kw_image_path'] || 
+                $maintenanceDocumentation['junction_box_after_cleaning'] || 
+                $maintenanceDocumentation['pump_cleaning']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2307,41 +2354,51 @@
                         <h1 class="text-center font-bold text-white">DOKUMENTASI PEMELIHARAAN POMPA DEX</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['40_hz_rpm_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Output FLow f = 40Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['40_hz_rpm_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['40_hz_rpm_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['40_hz_rpm_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['45_hz_kw_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Output FLow f = 45Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['45_hz_kw_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['45_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['45_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['50_hz_kw_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Output FLow f = 50Hz</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['50_hz_kw_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['50_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['50_hz_kw_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['junction_box_after_cleaning'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Junction Box Setelah Dibersihkan</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['junction_box_after_cleaning'] }}" alt="">
-                                @if ($maintenanceDocumentation['junction_box_after_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['junction_box_after_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['pump_cleaning'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Cleaning Pump</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['pump_cleaning'] }}" alt="">
-                                @if ($maintenanceDocumentation['pump_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['pump_cleaning']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
-                        </div>         
+                        </div>  
+                        @endif       
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
@@ -2358,8 +2415,17 @@
                     </div>
                 </footer>
             </div>
+            @endif
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['u1_pe_image_path'] ||
+                $maintenanceDocumentation['u2_pe_image_path'] ||
+                $maintenanceDocumentation['v1_pe_image_path'] ||
+                $maintenanceDocumentation['v2_pe_image_path'] ||
+                $maintenanceDocumentation['w1_pe_image_path'] ||
+                $maintenanceDocumentation['w2_pe_image_path']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2374,48 +2440,60 @@
                         <h1 class="text-center font-bold text-white">TEST INSULASI</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['u1_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">U1 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['u1_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['u1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['u1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['u2_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">U2 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['u2_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['u2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['u2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['v1_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">V1 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['v1_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['v1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['v1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['v2_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">V2 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['v2_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['v2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['v2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['w1_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">W1 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['w1_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['w1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['w1_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
-                        </div>  
+                        </div>
+                        @endif
+                        @if ($maintenanceDocumentation['w2_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">W2 - PE</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['w2_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['w2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['w2_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
-                        </div>              
+                        </div> 
+                        @endif             
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
@@ -2432,8 +2510,15 @@
                     </div>
                 </footer>
             </div>
+            @endif
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['u1_u2_image_path'] ||
+                $maintenanceDocumentation['v1_v2_image_path'] ||
+                $maintenanceDocumentation['w1_w2_image_path'] ||
+                $maintenanceDocumentation['pe_pe_image_path']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2448,34 +2533,42 @@
                         <h1 class="text-center font-bold text-white">TEST RESISTENSI</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['u1_u2_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">U1 - U2</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['u1_u2_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['u1_u2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['u1_u2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['v1_v2_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">V1 - V2</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['v1_v2_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['v1_v2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['v1_v2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['w1_w2_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">W1 - W2</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['w1_w2_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['w1_w2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['w1_w2_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['pe_pe_image_path'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">PE1 - PE2</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['pe_pe_image_path'] }}" alt="">
-                                @if ($maintenanceDocumentation['pe_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['pe_pe_image_path']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
@@ -2494,6 +2587,14 @@
             </div>
         
             @pageBreak
+            @if(
+                $maintenanceDocumentation['lifting_pump'] ||
+                $maintenanceDocumentation['cleaning_pump_body'] ||
+                $maintenanceDocumentation['polishing_wearing_ring'] ||
+                $maintenanceDocumentation['replacing_pump_oil'] ||
+                $maintenanceDocumentation['tightening_pump_bolts'] ||
+                $maintenanceDocumentation['cleaning_pump_impeller']
+            )
             <div class="page page-1 bg-gray-200 flex flex-col justify-between" style="height: 329.9mm">
                 <div>
                     <div class="p-2 bg-white">
@@ -2508,48 +2609,60 @@
                         <h1 class="text-center font-bold text-white">PEMELIHARAAN POMPA</h1>
                     </div>
                     <div class="grid grid-cols-2 gap-4 p-5">
+                        @if ($maintenanceDocumentation['lifting_pump'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Mengangkat Pompa</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['lifting_pump'] }}" alt="">
-                                @if ($maintenanceDocumentation['lifting_pump']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['lifting_pump']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['cleaning_pump_body'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Membersihkan Bodi Pompa</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['cleaning_pump_body'] }}" alt="">
-                                @if ($maintenanceDocumentation['cleaning_pump_body']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['cleaning_pump_body']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['polishing_wearing_ring'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Memoles Wearing Ring</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['polishing_wearing_ring'] }}" alt="">
-                                @if ($maintenanceDocumentation['polishing_wearing_ring']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['polishing_wearing_ring']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['replacing_pump_oil'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Mengganti Oli Pompa</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['replacing_pump_oil'] }}" alt="">
-                                @if ($maintenanceDocumentation['replacing_pump_oil']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['replacing_pump_oil']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
+                        @if ($maintenanceDocumentation['tightening_pump_bolts'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Mengencangkan Baut-Baut Pompa</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['tightening_pump_bolts'] }}" alt="">
-                                @if ($maintenanceDocumentation['tightening_pump_bolts']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['tightening_pump_bolts']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
-                        </div>  
+                        </div>
+                        @endif
+                        @if ($maintenanceDocumentation['cleaning_pump_impeller'])
                         <div class="flex flex-col gap-2">
                             <p class="text-center font-bold">Membersihkan Impeller Pompa</p>
                             <div class="p-2 bg-white h-64" >
                                 <img src="{{ $maintenanceDocumentation['cleaning_pump_impeller'] }}" alt="">
-                                @if ($maintenanceDocumentation['cleaning_pump_impeller']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
+                                @if (!$maintenanceDocumentation['cleaning_pump_impeller']) <p class="text-center m-24 text-gray-300">Tidak Ada Dokumentasi</p> @endif
                             </div>
                         </div>
+                        @endif
                     </div>
                 </div>
                 <footer class="bg-blue-800 text-white w-full" style="">
