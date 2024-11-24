@@ -23,7 +23,7 @@
                     </div>
                     <div class="">
                         <div class="rounded-lg bg-blue-950 py-16 px-10 text-center">
-                            <h3 class="text-white text-xl font-bold">Dex Activity</h3>
+                            <h3 class="text-white text-xl font-bold">DEX Activity</h3>
                             <p class="text-white mb-5">Lihat kegiatan yang kami lakukan melalui kanal media kami lainnya</p>
                             <div class="flex flex-col items-center gap-5">
                                 <button class="px-5 py-2 w-32 rounded-md bg-white">Youtube</button>

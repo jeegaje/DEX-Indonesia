@@ -1,8 +1,8 @@
 <html lang="en">
 
 <head>
-    <title>Report</title>
-    @vite(['resources/css/app.css'])
+    <title>Report Maintenance #{{ $maintenance->maintenancePumpData->number_of_inspection }} {{ $maintenance->pump->serial_number }} Unit {{ $maintenance->pump->unit }} {{ $maintenance->maintenanceMegger->date }}</title>
+    @vite(['resources/css/app.css','resources/js/report.js'])
     <style>
         input {
             padding-top:0px !important;
@@ -15,7 +15,7 @@
 <body >
     <div class="p-5 bg-gray-800 flex justify-between items-center fixed top-0 w-full">
         <h2 class="text-white">Preview Report</h2>
-        <h2 class="text-white font-bold">Report Maintenance #2</h2>
+        <h2 id="reportTitle" class="text-white font-bold">Report Maintenance #{{ $maintenance->maintenancePumpData->number_of_inspection }} {{ $maintenance->pump->serial_number }} Unit {{ $maintenance->pump->unit }} {{ $maintenance->maintenanceMegger->date }}</h2>
         <button id="btn" class="py-2 px-4 bg-white rounded-md">Download</button>
     </div>
 
@@ -39,9 +39,9 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Tim Teknisi</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
-                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
+                                    <div class="flex rounded-md bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
+                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
                                             value="{{ $maintenance->user->name }}">
                                     </div>
                                 </div>
@@ -49,9 +49,9 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Lokasi Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
-                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
+                                    <div class="flex rounded-md bg-white ">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
+                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
                                             value="{{ $maintenance->pump->location }}">
                                     </div>
                                 </div>
@@ -59,9 +59,9 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">No Seri Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
-                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
+                                    <div class="flex rounded-md bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
+                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
                                             value="{{ $maintenance->pump->serial_number }}">
                                     </div>
                                 </div>
@@ -71,8 +71,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Flow & Head</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->pump->flow_and_head }}">
                                     </div>
@@ -81,8 +81,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">No Unit Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->pump->unit }}">
                                     </div>
@@ -93,8 +93,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Pemeriksaan</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->maintenancePumpData->number_of_inspection }}">
                                     </div>
@@ -103,8 +103,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Running Hours Total</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->maintenancePumpData->running_hours_total }}">
                                     </div>
@@ -113,8 +113,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Running Hours Bulanan</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->maintenancePumpData->running_hours_monthly }}">
                                     </div>
@@ -146,14 +146,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Lampu Indikator R.S.T</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="indicator_light_rst" name="indicator_light_rst" type="radio" 
+                                            <input disabled id="indicator_light_rst" name="indicator_light_rst" type="radio" 
                                             @if ($maintenance->maintenanceLvmdp->indicator_light_rst == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="indicator_light_rst" name="indicator_light_rst" type="radio"
+                                            <input disabled id="indicator_light_rst" name="indicator_light_rst" type="radio"
                                             @if ($maintenance->maintenanceLvmdp->indicator_light_rst == 'abnormal' || $maintenance->maintenanceLvmdp->indicator_light_rst == null)
                                                 checked
                                             @endif
@@ -165,14 +165,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Balance Voltase</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="voltage_balance" name="voltage_balance" type="radio"
+                                            <input disabled id="voltage_balance" name="voltage_balance" type="radio"
                                             @if ($maintenance->maintenanceLvmdp->voltage_balance == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="voltage_balance" name="voltage_balance" type="radio"
+                                            <input disabled id="voltage_balance" name="voltage_balance" type="radio"
                                             @if ($maintenance->maintenanceLvmdp->voltage_balance == 'abnormal' || $maintenance->maintenanceLvmdp->voltage_balance == null)
                                                 checked
                                             @endif
@@ -183,8 +183,8 @@
                                 <div class="sm:col-span-4 flex gap-2 items-center justify-between">
                                     <label for="technician_team" class="font-medium text-gray-900">Frequency</label>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                        <div class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenanceLvmdp->frequency }}">
                                         </div>
@@ -195,8 +195,8 @@
                                         <div class="flex gap-2 items-center">
                                             <label for="technician_team" class="font-medium text-gray-900">V1</label>
                                             <div class="w-10">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input type="text" name="technician_team" id="technician_team"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled type="text" name="technician_team" id="technician_team"
                                                         class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                         value="{{ $maintenance->maintenanceLvmdp->v1 }}">
                                                 </div>
@@ -207,8 +207,8 @@
                                         <div class="flex gap-2 items-center">
                                             <label for="technician_team" class="font-medium text-gray-900">V2</label>
                                             <div class="w-10">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input type="text" name="technician_team" id="technician_team"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled type="text" name="technician_team" id="technician_team"
                                                         class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                         value="{{ $maintenance->maintenanceLvmdp->v2 }}">
                                                 </div>
@@ -219,8 +219,8 @@
                                         <div class="flex gap-2 items-center">
                                             <label for="technician_team" class="font-medium text-gray-900">V3</label>
                                             <div class="w-10">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input type="text" name="technician_team" id="technician_team"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled type="text" name="technician_team" id="technician_team"
                                                         class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                         value="{{ $maintenance->maintenanceLvmdp->v3 }}">
                                                 </div>
@@ -232,8 +232,8 @@
                                     <div class="flex rounded-md ring-gray-300 w-full">
                                         <div class="flex gap-2 items-center">
                                             <div class="">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input id="push-everything" name="push-notifications" type="radio"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled id="push-everything" name="push-notifications" type="radio"
                                                         class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                 </div>
                                             </div>
@@ -243,8 +243,8 @@
                                     <div class="flex rounded-md ring-gray-300 w-full">
                                         <div class="flex gap-2 items-center">
                                             <div class="">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input id="push-everything" name="push-notifications" type="radio"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled id="push-everything" name="push-notifications" type="radio"
                                                         class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                 </div>
                                             </div>
@@ -254,8 +254,8 @@
                                     <div class="flex rounded-md ring-gray-300 w-full">
                                         <div class="flex gap-2 items-center">
                                             <div class="">
-                                                <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                    <input id="push-everything" name="push-notifications" type="radio"
+                                                <div class="flex rounded-md bg-white">
+                                                    <input disabled id="push-everything" name="push-notifications" type="radio"
                                                         class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                 </div>
                                             </div>
@@ -285,14 +285,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Koneksi Kabel/Baut</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
+                                            <input disabled id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->cable_bolt_connection == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
+                                            <input disabled id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->cable_bolt_connection == 'abnormal' || $maintenance->maintenanceJunctionBox->cable_bolt_connection == null )
                                                 checked
                                             @endif
@@ -304,14 +304,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Kabel</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_condition" name="cable_condition" type="radio"
+                                            <input disabled id="cable_condition" name="cable_condition" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->cable_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_condition" name="cable_condition" type="radio"
+                                            <input disabled id="cable_condition" name="cable_condition" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->cable_condition == 'abnormal' || $maintenance->maintenanceJunctionBox->cable_condition == null )
                                                 checked
                                             @endif
@@ -323,14 +323,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kerapian Koneksi</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="connection_neatness" name="connection_neatness" type="radio"
+                                            <input disabled id="connection_neatness" name="connection_neatness" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->connection_neatness == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="connection_neatness" name="connection_neatness" type="radio"
+                                            <input disabled id="connection_neatness" name="connection_neatness" type="radio"
                                             @if ($maintenance->maintenanceJunctionBox->connection_neatness == 'abnormal' || $maintenance->maintenanceJunctionBox->connection_neatness == null )
                                                 checked
                                             @endif
@@ -341,8 +341,8 @@
                                 <div class="grid grid-cols-3 gap-2 items-center justify-between">
                                     <label for="technician_team" class="font-medium text-gray-900 col-span-2 ">Kelembapan Dalam Box</label>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                        <div class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenanceJunctionBox->humidity_inside_box }}">
                                         </div>
@@ -351,8 +351,8 @@
                                 <div class="grid grid-cols-3 gap-2 items-center justify-between">
                                     <label for="technician_team" class="font-medium text-gray-900 col-span-2 ">Suhu Dalam Box</label>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                        <div class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenanceJunctionBox->temperature_inside_box }}">
                                         </div>
@@ -380,14 +380,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Koneksi Kabel/Baut</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
+                                            <input disabled id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
                                             @if ($maintenance->maintenancePanel->cable_bolt_connection == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
+                                            <input disabled id="cable_bolt_connection" name="cable_bolt_connection" type="radio"
                                             @if ($maintenance->maintenancePanel->cable_bolt_connection == 'abnormal' || $maintenance->maintenancePanel->cable_bolt_connection == null )
                                                 checked
                                             @endif
@@ -399,14 +399,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Kabel</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_condition" name="cable_condition" type="radio"
+                                            <input disabled id="cable_condition" name="cable_condition" type="radio"
                                             @if ($maintenance->maintenancePanel->cable_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="cable_condition" name="cable_condition" type="radio"
+                                            <input disabled id="cable_condition" name="cable_condition" type="radio"
                                             @if ($maintenance->maintenancePanel->cable_condition == 'abnormal' || $maintenance->maintenancePanel->cable_condition == null )
                                                 checked
                                             @endif
@@ -418,14 +418,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kerapian Koneksi</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="connection_neatness" name="connection_neatness" type="radio"
+                                            <input disabled id="connection_neatness" name="connection_neatness" type="radio"
                                             @if ($maintenance->maintenancePanel->connection_neatness == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="connection_neatness" name="connection_neatness" type="radio"
+                                            <input disabled id="connection_neatness" name="connection_neatness" type="radio"
                                             @if ($maintenance->maintenancePanel->connection_neatness == 'abnormal' || $maintenance->maintenancePanel->connection_neatness == null )
                                                 checked
                                             @endif
@@ -436,8 +436,8 @@
                                 <div class="grid grid-cols-3 gap-2 items-center justify-between">
                                     <label for="technician_team" class="font-medium text-gray-900 col-span-2 ">Kelembapan Dalam Panel</label>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                        <div class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenancePanel->humidity_inside_panel }}">
                                         </div>
@@ -446,8 +446,8 @@
                                 <div class="grid grid-cols-3 gap-2 items-center justify-between">
                                     <label for="technician_team" class="font-medium text-gray-900 col-span-2 ">Suhu Dalam Panel</label>
                                     <div class="grid grid-cols-2 gap-3">
-                                        <div class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                        <div class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenancePanel->temperature_inside_panel }}">
                                         </div>
@@ -478,14 +478,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Indikator R.S.T </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="rst_indicator" name="rst_indicator" type="radio"
+                                                <input disabled id="rst_indicator" name="rst_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->rst_indicator == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="rst_indicator" name="rst_indicator" type="radio"
+                                                <input disabled id="rst_indicator" name="rst_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->rst_indicator == 'abnormal' || $maintenance->maintenancePanel->rst_indicator == null )
                                                     checked
                                                 @endif
@@ -497,14 +497,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Indikator Pump On </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="pump_on_indicator" name="pump_on_indicator" type="radio"
+                                                <input disabled id="pump_on_indicator" name="pump_on_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->pump_on_indicator == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="pump_on_indicator" name="pump_on_indicator" type="radio"
+                                                <input disabled id="pump_on_indicator" name="pump_on_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->pump_on_indicator == 'abnormal' || $maintenance->maintenancePanel->pump_on_indicator == null )
                                                     checked
                                                 @endif
@@ -516,14 +516,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Indikator VSD Standby </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="vsd_standby_indicator" name="vsd_standby_indicator" type="radio"
+                                                <input disabled id="vsd_standby_indicator" name="vsd_standby_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->vsd_standby_indicator == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="vsd_standby_indicator" name="vsd_standby_indicator" type="radio"
+                                                <input disabled id="vsd_standby_indicator" name="vsd_standby_indicator" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->vsd_standby_indicator == 'abnormal' || $maintenance->maintenancePanel->vsd_standby_indicator == null )
                                                     checked
                                                 @endif
@@ -535,14 +535,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Monitor Drive </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="drive_monitor" name="drive_monitor" type="radio"
+                                                <input disabled id="drive_monitor" name="drive_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->drive_monitor == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="drive_monitor" name="drive_monitor" type="radio"
+                                                <input disabled id="drive_monitor" name="drive_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->drive_monitor == 'abnormal' || $maintenance->maintenancePanel->drive_monitor == null )
                                                     checked
                                                 @endif
@@ -554,14 +554,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Monitor Sensor </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="sensor_monitor" name="sensor_monitor" type="radio"
+                                                <input disabled id="sensor_monitor" name="sensor_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->sensor_monitor == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="sensor_monitor" name="sensor_monitor" type="radio"
+                                                <input disabled id="sensor_monitor" name="sensor_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->sensor_monitor == 'abnormal' || $maintenance->maintenancePanel->sensor_monitor == null )
                                                     checked
                                                 @endif
@@ -573,14 +573,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Monitor Power Meter </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="power_meter_monitor" name="power_meter_monitor" type="radio"
+                                                <input disabled id="power_meter_monitor" name="power_meter_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->power_meter_monitor == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="power_meter_monitor" name="power_meter_monitor" type="radio"
+                                                <input disabled id="power_meter_monitor" name="power_meter_monitor" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->power_meter_monitor == 'abnormal' || $maintenance->maintenancePanel->power_meter_monitor == null )
                                                     checked
                                                 @endif
@@ -592,14 +592,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Selektor Moa </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="moa_selector" name="moa_selector" type="radio"
+                                                <input disabled id="moa_selector" name="moa_selector" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->moa_selector == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="moa_selector" name="moa_selector" type="radio"
+                                                <input disabled id="moa_selector" name="moa_selector" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->moa_selector == 'abnormal' || $maintenance->maintenancePanel->moa_selector == null )
                                                     checked
                                                 @endif
@@ -611,14 +611,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Tombol Start </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="start_button" name="start_button" type="radio"
+                                                <input disabled id="start_button" name="start_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->start_button == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="start_button" name="start_button" type="radio"
+                                                <input disabled id="start_button" name="start_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->start_button == 'abnormal' || $maintenance->maintenancePanel->start_button == null )
                                                     checked
                                                 @endif
@@ -630,14 +630,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Tombol Stop </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="stop_button" name="stop_button" type="radio"
+                                                <input disabled id="stop_button" name="stop_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->stop_button == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="stop_button" name="stop_button" type="radio"
+                                                <input disabled id="stop_button" name="stop_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->stop_button == 'abnormal' || $maintenance->maintenancePanel->stop_button == null )
                                                     checked
                                                 @endif
@@ -649,14 +649,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Tombol Reset </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="reset_button" name="reset_button" type="radio"
+                                                <input disabled id="reset_button" name="reset_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->reset_button == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="reset_button" name="reset_button" type="radio"
+                                                <input disabled id="reset_button" name="reset_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->reset_button == 'abnormal' || $maintenance->maintenancePanel->reset_button == null )
                                                     checked
                                                 @endif
@@ -668,14 +668,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Tombol Emergency </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="emergency_button" name="emergency_button" type="radio"
+                                                <input disabled id="emergency_button" name="emergency_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->emergency_button == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="emergency_button" name="emergency_button" type="radio"
+                                                <input disabled id="emergency_button" name="emergency_button" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->emergency_button == 'abnormal' || $maintenance->maintenancePanel->emergency_button == null )
                                                     checked
                                                 @endif
@@ -687,14 +687,14 @@
                                         <label for="technician_team" class="font-medium text-gray-900">Kipas Exhaust </label>
                                         <div class="grid grid-cols-2 gap-3">
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="exhaust_fan" name="exhaust_fan" type="radio"
+                                                <input disabled id="exhaust_fan" name="exhaust_fan" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->exhaust_fan == 'normal')
                                                     checked
                                                 @endif
                                                     class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                             </div>
                                             <div class="flex items-center justify-center gap-x-3">
-                                                <input id="exhaust_fan" name="exhaust_fan" type="radio"
+                                                <input disabled id="exhaust_fan" name="exhaust_fan" type="radio"
                                                 @if ($maintenance->maintenancePanelFunction->exhaust_fan == 'abnormal' || $maintenance->maintenancePanel->exhaust_fan == null )
                                                     checked
                                                 @endif
@@ -732,23 +732,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">KW</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_kw"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_kw"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_kw"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 250">
                                             </div>
@@ -757,23 +757,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Amper</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_amper"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_amper"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_amper"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 517">
                                             </div>
@@ -782,23 +782,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">RPM</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_rpm"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_rpm"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_rpm"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 590">
                                             </div>
@@ -807,23 +807,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Torsi</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_torsi"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_torsi"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_torsi"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 110 %">
                                             </div>
@@ -832,23 +832,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Winding</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_winding_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_winding_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_winding_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 90 C">
                                             </div>
@@ -857,23 +857,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Pump Humidity</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_pump_humidity"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_pump_humidity"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_pump_humidity"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 90 C">
                                             </div>
@@ -882,23 +882,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Bearing</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_bearing_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_bearing_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_bearing_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 90 C">
                                             </div>
@@ -907,23 +907,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Kabel 1</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_cable_1_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_cable_1_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_cable_1_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 60 C">
                                             </div>
@@ -932,23 +932,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Kabel 2</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_cable_2_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_cable_2_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_cable_2_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 60 C">
                                             </div>
@@ -957,23 +957,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Kabel 3</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_cable_3_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_cable_3_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_cable_3_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 60 C">
                                             </div>
@@ -982,23 +982,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Vibrasi</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_vibration"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_vibration"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_vibration"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 15 m/s">
                                             </div>
@@ -1007,23 +1007,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suara (dB)</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_sound"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_sound"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_sound"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 100 dB">
                                             </div>
@@ -1032,23 +1032,23 @@
                                     <div class="flex gap-2 items-center justify-between">
                                         <label for="technician_team" class="font-medium text-gray-900">Suhu Terminal</label>
                                         <div class="grid grid-cols-4 gap-1">
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"40_hz_terminal_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"45_hz_terminal_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceElectroMechanical->{"50_hz_terminal_temperature"} }}">
                                             </div>
-                                            <div class="rounded-md shadow-sm ring-1 bg-white w-16">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                            <div class="rounded-md bg-white w-16">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="< 60 C">
                                             </div>
@@ -1100,14 +1100,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_fault_temperature_sensor" name="pump_fault_temperature_sensor" type="radio"
+                                                        <input disabled id="pump_fault_temperature_sensor" name="pump_fault_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_fault_temperature_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_fault_temperature_sensor" name="pump_fault_temperature_sensor" type="radio"
+                                                        <input disabled id="pump_fault_temperature_sensor" name="pump_fault_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_fault_temperature_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->pump_fault_temperature_sensor == null )
                                                             checked
                                                         @endif
@@ -1143,14 +1143,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="low_water_wlc_sensor" name="low_water_wlc_sensor" type="radio"
+                                                        <input disabled id="low_water_wlc_sensor" name="low_water_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->low_water_wlc_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="low_water_wlc_sensor" name="low_water_wlc_sensor" type="radio"
+                                                        <input disabled id="low_water_wlc_sensor" name="low_water_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->low_water_wlc_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->low_water_wlc_sensor == null )
                                                             checked
                                                         @endif
@@ -1186,14 +1186,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="voltage_fault_voltage_sensor" name="voltage_fault_voltage_sensor" type="radio"
+                                                        <input disabled id="voltage_fault_voltage_sensor" name="voltage_fault_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->voltage_fault_voltage_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="voltage_fault_voltage_sensor" name="voltage_fault_voltage_sensor" type="radio"
+                                                        <input disabled id="voltage_fault_voltage_sensor" name="voltage_fault_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->voltage_fault_voltage_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->voltage_fault_voltage_sensor == null )
                                                             checked
                                                         @endif
@@ -1229,14 +1229,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="vsd_vault_vsd_sensor" name="vsd_vault_vsd_sensor" type="radio"
+                                                        <input disabled id="vsd_vault_vsd_sensor" name="vsd_vault_vsd_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->vsd_vault_vsd_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="vsd_vault_vsd_sensor" name="vsd_vault_vsd_sensor" type="radio"
+                                                        <input disabled id="vsd_vault_vsd_sensor" name="vsd_vault_vsd_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->vsd_vault_vsd_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->vsd_vault_vsd_sensor == null )
                                                             checked
                                                         @endif
@@ -1252,14 +1252,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_temperature_sensor" name="trouble_alarm_temperature_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_temperature_sensor" name="trouble_alarm_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_temperature_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_temperature_sensor" name="trouble_alarm_temperature_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_temperature_sensor" name="trouble_alarm_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_temperature_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->trouble_alarm_temperature_sensor == null )
                                                             checked
                                                         @endif
@@ -1270,14 +1270,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_wlc_sensor" name="trouble_alarm_wlc_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_wlc_sensor" name="trouble_alarm_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_wlc_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_wlc_sensor" name="trouble_alarm_wlc_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_wlc_sensor" name="trouble_alarm_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_wlc_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->trouble_alarm_wlc_sensor == null )
                                                             checked
                                                         @endif
@@ -1288,14 +1288,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_voltage_sensor" name="trouble_alarm_voltage_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_voltage_sensor" name="trouble_alarm_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_voltage_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_voltage_sensor" name="trouble_alarm_voltage_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_voltage_sensor" name="trouble_alarm_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_voltage_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->trouble_alarm_voltage_sensor == null )
                                                             checked
                                                         @endif
@@ -1306,14 +1306,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_vsd_sensor" name="trouble_alarm_vsd_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_vsd_sensor" name="trouble_alarm_vsd_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_vsd_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="trouble_alarm_vsd_sensor" name="trouble_alarm_vsd_sensor" type="radio"
+                                                        <input disabled id="trouble_alarm_vsd_sensor" name="trouble_alarm_vsd_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->trouble_alarm_vsd_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->trouble_alarm_vsd_sensor == null )
                                                             checked
                                                         @endif
@@ -1329,14 +1329,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_temperature_sensor" name="pump_trip_temperature_sensor" type="radio"
+                                                        <input disabled id="pump_trip_temperature_sensor" name="pump_trip_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_temperature_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_temperature_sensor" name="pump_trip_temperature_sensor" type="radio"
+                                                        <input disabled id="pump_trip_temperature_sensor" name="pump_trip_temperature_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_temperature_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->pump_trip_temperature_sensor == null )
                                                             checked
                                                         @endif
@@ -1347,14 +1347,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_wlc_sensor" name="pump_trip_wlc_sensor" type="radio"
+                                                        <input disabled id="pump_trip_wlc_sensor" name="pump_trip_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_wlc_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_wlc_sensor" name="pump_trip_wlc_sensor" type="radio"
+                                                        <input disabled id="pump_trip_wlc_sensor" name="pump_trip_wlc_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_wlc_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->pump_trip_wlc_sensor == null )
                                                             checked
                                                         @endif
@@ -1365,14 +1365,14 @@
                                             <div class="flex flex-col items-center justify-center gap-x-3 w-28">
                                                 <div class="grid grid-cols-2 gap-2">
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_voltage_sensor" name="pump_trip_voltage_sensor" type="radio"
+                                                        <input disabled id="pump_trip_voltage_sensor" name="pump_trip_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_voltage_sensor == 'normal')
                                                             checked
                                                         @endif
                                                             class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                                     </div>
                                                     <div class="flex items-center justify-center gap-x-3">
-                                                        <input id="pump_trip_voltage_sensor" name="pump_trip_voltage_sensor" type="radio"
+                                                        <input disabled id="pump_trip_voltage_sensor" name="pump_trip_voltage_sensor" type="radio"
                                                         @if ($maintenance->maintenanceSensorTest->pump_trip_voltage_sensor == 'abnormal' || $maintenance->maintenanceSensorTest->pump_trip_voltage_sensor == null )
                                                             checked
                                                         @endif
@@ -1411,14 +1411,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Pipa Kolom</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="column_pipe_condition" name="column_pipe_condition" type="radio"
+                                            <input disabled id="column_pipe_condition" name="column_pipe_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->column_pipe_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="column_pipe_condition" name="column_pipe_condition" type="radio"
+                                            <input disabled id="column_pipe_condition" name="column_pipe_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->column_pipe_condition == 'abnormal' || $maintenance->maintenanceSensorTest->column_pipe_condition == null )
                                                 checked
                                             @endif
@@ -1430,14 +1430,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Pipa Output</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="output_pipe_condition" name="output_pipe_condition" type="radio"
+                                            <input disabled id="output_pipe_condition" name="output_pipe_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->output_pipe_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="output_pipe_condition" name="output_pipe_condition" type="radio"
+                                            <input disabled id="output_pipe_condition" name="output_pipe_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->output_pipe_condition == 'abnormal' || $maintenance->maintenanceSensorTest->output_pipe_condition == null )
                                                 checked
                                             @endif
@@ -1449,14 +1449,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Valve (Ops)</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="valve_condition" name="valve_condition" type="radio"
+                                            <input disabled id="valve_condition" name="valve_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->valve_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="valve_condition" name="valve_condition" type="radio"
+                                            <input disabled id="valve_condition" name="valve_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->valve_condition == 'abnormal' || $maintenance->maintenanceSensorTest->valve_condition == null )
                                                 checked
                                             @endif
@@ -1468,14 +1468,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Flap (Ops)</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="flap_condition" name="flap_condition" type="radio"
+                                            <input disabled id="flap_condition" name="flap_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->flap_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="flap_condition" name="flap_condition" type="radio"
+                                            <input disabled id="flap_condition" name="flap_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->flap_condition == 'abnormal' || $maintenance->maintenanceSensorTest->flap_condition == null )
                                                 checked
                                             @endif
@@ -1487,14 +1487,14 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Volume Output Air</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="water_output_condition" name="water_output_condition" type="radio"
+                                            <input disabled id="water_output_condition" name="water_output_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->water_output_condition == 'normal')
                                                 checked
                                             @endif
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600">
                                         </div>
                                         <div class="flex items-center justify-center gap-x-3">
-                                            <input id="water_output_condition" name="water_output_condition" type="radio"
+                                            <input disabled id="water_output_condition" name="water_output_condition" type="radio"
                                             @if ($maintenance->maintenanceColumnPipeWaterOutput->water_output_condition == 'abnormal' || $maintenance->maintenanceSensorTest->water_output_condition == null )
                                                 checked
                                             @endif
@@ -1506,8 +1506,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900">Kondisi Nilai pH Air</label>
                                     <div class="grid grid-cols-2 gap-3">
                                         <div
-                                            class="col-span-2 flex rounded-md shadow-sm ring-1 bg-white">
-                                            <input type="text" name="technician_team" id="technician_team"
+                                            class="col-span-2 flex rounded-md bg-white">
+                                            <input disabled type="text" name="technician_team" id="technician_team"
                                                 class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                 value="{{ $maintenance->maintenanceColumnPipeWaterOutput->water_ph_value_condition }}">
                                         </div>
@@ -1528,12 +1528,12 @@
                     </div>
                     <div class="flex gap-1 justify-center p-2 bg-gray-200">
                         <div class="flex flex-col items-center justify-between bg-white w-48 h-32">
-                            <p class="text-xs">Teknisi Dex</p>
+                            <p class="text-xs">Teknisi DEX</p>
                             <img src="" alt="">
                             <p class="text-xs">Gilang</p>
                         </div>
                         <div class="flex flex-col items-center justify-between bg-white w-48 h-32">
-                            <p class="text-xs">Menejemn Dex</p>
+                            <p class="text-xs">Menejemn DEX</p>
                             <img src="" alt="">
                             <p class="text-xs">Tommy</p>
                         </div>
@@ -1587,9 +1587,9 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Tim Teknisi</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
-                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
+                                            class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm/6"
                                             value="{{ $maintenance->user->name }}">
                                     </div>
                                 </div>
@@ -1597,8 +1597,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Lokasi Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->pump->location }}">
                                     </div>
@@ -1609,8 +1609,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">No Unit Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->pump->unit }}">
                                     </div>
@@ -1619,8 +1619,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">No Seri Pompa</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->pump->serial_number }}">
                                     </div>
@@ -1631,8 +1631,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Tanggal</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->maintenanceMegger->date }}">
                                     </div>
@@ -1641,8 +1641,8 @@
                             <div class="grid grid-cols-2 gap-2 items-center">
                                 <label for="technician_team" class="font-medium text-gray-900">Running Hours</label>
                                 <div class="">
-                                    <div class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                        <input type="text" name="technician_team" id="technician_team"
+                                    <div class="flex rounded-md bg-white  bg-white">
+                                        <input disabled type="text" name="technician_team" id="technician_team"
                                             class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                             value="{{ $maintenance->maintenanceMegger->running_hours }}">
                                     </div>
@@ -1664,8 +1664,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">U1 -PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->u1_pe }}">
                                             </div>
@@ -1675,8 +1675,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">V1 - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->v1_pe }}">
                                             </div>
@@ -1686,8 +1686,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">W1 - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->w1_pe }}">
                                             </div>
@@ -1697,8 +1697,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">U2 - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->u2_pe }}">
                                             </div>
@@ -1708,8 +1708,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">V2 - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->v2_pe }}">
                                             </div>
@@ -1719,8 +1719,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">W2 - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->w2_pe }}">
                                             </div>
@@ -1730,8 +1730,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">U1 - V2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->u1_v2 }}">
                                             </div>
@@ -1741,8 +1741,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">U1 - W2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->u1_w2 }}">
                                             </div>
@@ -1752,8 +1752,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">V1 - U2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->v1_u2 }}">
                                             </div>
@@ -1763,8 +1763,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">V1 - W2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->v1_w2 }}">
                                             </div>
@@ -1774,8 +1774,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">W1 - U2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->w1_u2 }}">
                                             </div>
@@ -1785,8 +1785,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">W1 - V2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceInsulation->w1_v2 }}">
                                             </div>
@@ -1805,8 +1805,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">PE - PE</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceResistance->pe_pe }}">
                                             </div>
@@ -1816,8 +1816,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">U1 - U2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceResistance->u1_u2 }}">
                                             </div>
@@ -1827,8 +1827,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">V1 - V2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceResistance->v1_v2 }}">
                                             </div>
@@ -1838,8 +1838,8 @@
                                         <label for="technician_team" class="font-medium text-gray-900 ">W1 - W2</label>
                                         <div class="col-span-2">
                                             <div
-                                                class="flex rounded-md shadow-sm ring-1 bg-white  bg-white">
-                                                <input type="text" name="technician_team" id="technician_team"
+                                                class="flex rounded-md bg-white  bg-white">
+                                                <input disabled type="text" name="technician_team" id="technician_team"
                                                     class="block flex-1 border-0 bg-transparent pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6"
                                                     value="{{ $maintenance->maintenanceResistance->w1_w2 }}">
                                             </div>
@@ -1864,8 +1864,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Bodi Pompa</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_body" name="pump_body" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_body" name="pump_body" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_body == 'ok')
                                                     checked
                                                 @endif
@@ -1876,8 +1876,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_body" name="pump_body" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_body" name="pump_body" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_body == 'bad' )
                                                     checked
                                                 @endif
@@ -1891,8 +1891,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Impeller</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="impeller" name="impeller" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="impeller" name="impeller" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->impeller == 'ok')
                                                     checked
                                                 @endif
@@ -1903,8 +1903,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="impeller" name="impeller" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="impeller" name="impeller" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->impeller == 'bad' )
                                                     checked
                                                 @endif
@@ -1918,8 +1918,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Wearing Ring</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="wearing_ring" name="wearing_ring" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="wearing_ring" name="wearing_ring" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->wearing_ring == 'ok')
                                                     checked
                                                 @endif
@@ -1930,8 +1930,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="wearing_ring" name="wearing_ring" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="wearing_ring" name="wearing_ring" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->wearing_ring == 'bad' )
                                                     checked
                                                 @endif
@@ -1945,8 +1945,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Kabel</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="cable" name="cable" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="cable" name="cable" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->cable == 'ok')
                                                     checked
                                                 @endif
@@ -1957,8 +1957,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="cable" name="cable" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="cable" name="cable" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->cable == 'bad' )
                                                     checked
                                                 @endif
@@ -1972,8 +1972,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Baut Pompa</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_bolt" name="pump_bolt" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_bolt" name="pump_bolt" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_bolt == 'ok')
                                                     checked
                                                 @endif
@@ -1984,8 +1984,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_bolt" name="pump_bolt" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_bolt" name="pump_bolt" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_bolt == 'bad' )
                                                     checked
                                                 @endif
@@ -1999,8 +1999,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Kondisi Pompa</label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_condition" name="pump_condition" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_condition" name="pump_condition" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_condition == 'ok')
                                                     checked
                                                 @endif
@@ -2011,8 +2011,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="pump_condition" name="pump_condition" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="pump_condition" name="pump_condition" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->pump_condition == 'bad' )
                                                     checked
                                                 @endif
@@ -2026,8 +2026,8 @@
                                     <label for="technician_team" class="font-medium text-gray-900 ">Baut Column Pipe </label>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="column_pipe_bolt" name="column_pipe_bolt" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="column_pipe_bolt" name="column_pipe_bolt" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->column_pipe_bolt == 'ok')
                                                     checked
                                                 @endif
@@ -2038,8 +2038,8 @@
                                     </div>
                                     <div class="flex gap-2 items-center">
                                         <div class="">
-                                            <div class="flex rounded-md shadow-sm ring-1 bg-white">
-                                                <input id="column_pipe_bolt" name="column_pipe_bolt" type="radio"
+                                            <div class="flex rounded-md bg-white">
+                                                <input disabled id="column_pipe_bolt" name="column_pipe_bolt" type="radio"
                                                 @if ($maintenance->maintenancePumpCondition->column_pipe_bolt == 'bad' )
                                                     checked
                                                 @endif
@@ -2571,6 +2571,39 @@
         </div>
     </div>
 
+    <div
+    id="modalEl"
+    tabindex="-1"
+    aria-hidden="true"
+    class="fixed left-0 right-0 top-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full overflow-y-auto overflow-x-hidden p-4 md:inset-0"
+>
+    <div class="relative max-h-full w-full max-w-2xl">
+        <!-- Modal content -->
+        <div class="relative rounded-lg bg-white shadow dark:bg-gray-700">
+            <!-- Modal header -->
+            <div
+                class="flex items-start justify-center rounded-t border-b p-5 dark:border-gray-600"
+            >
+                <h3
+                    class="text-xl font-semibold text-gray-900 dark:text-white lg:text-2xl"
+                >   Maintenance Report
+                </h3>
+            </div>
+            <!-- Modal body -->
+            <div class="space-y-6 p-6 flex flex-col justify-center items-center">
+                <div role="status">
+                    <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                        <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                    </svg>
+                    <span class="sr-only">Loading...</span>
+                </div>
+                Report is Downloading
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
     <style>
@@ -2663,44 +2696,11 @@
 
     </script>
     <script>
-        let btn = document.getElementById('btn');
-        const pages = document.getElementsByClassName('page');
 
-        btn.addEventListener('click', function(){
-        html2PDF(pages, 
-            
-            {
-                jsPDF: {
-                    unit: "mm",
-                    format: [210, 330]
-                },
-            html2canvas: {
-                imageTimeout: 15000,
-                logging: true,
-                useCORS: false,
-                letterRendering: true
-            },
-            imageType: 'image/jpeg',
-            imageQuality: 1,
-            margin: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-            },
-            watermark: undefined,
-            autoResize: true,
-            output: 'jspdf-generate.pdf',
-            init: function(pdf) {
-                pdf.setFontSize(10);
-            },
-            success: function(pdf) {
-                pdf.save(this.output);
-            }
-            }
-        
-        );
-        });
+
+    </script>
+
+    <script>
     </script>
 
 
