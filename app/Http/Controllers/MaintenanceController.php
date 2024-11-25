@@ -46,6 +46,10 @@ class MaintenanceController extends Controller
         $fileContent = Storage::get($filePath);
         $mimeType = Storage::mimeType($filePath);
         $base64 = base64_encode($fileContent);
+
+        if ($mimeType == null && $base64 == null) {
+            return null;
+        }
         
         return 'data:' . $mimeType . ';base64,' . $base64;
     }

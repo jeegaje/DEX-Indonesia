@@ -1,5 +1,10 @@
 @extends('company-profile.template')
 
+@section('meta')
+<meta name="description" content="{{ $blog->meta_description }}">
+<meta name="keywords" content="{{ $blog->meta_keywords }}">
+@endsection
+
 @section('content')
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">

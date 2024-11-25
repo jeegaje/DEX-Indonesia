@@ -30,7 +30,7 @@
     linear-gradient(to bottom, rgba(170, 170, 170, 0.52), rgba(0, 0, 0, 0.73)),
     url('{{ asset('storage/' . $newest_blog->banner) }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
                             <div class="flex flex-col text-white">
-                                <a href="#">
+                                <a href="{{ route('article.show', ['slug' => $newest_blog->slug]) }}">
                                     <h5 class="mb-2 text-xl font-bold tracking-tight dark:text-white">{{ $newest_blog->title }}</h5>
                                 </a>
                                 <div class="flex items-center gap-2">
@@ -66,7 +66,10 @@
                                       </svg>
                                     <span>{{ date('j F Y', strtotime($newest_blog->published_at)) }}</span>
                                     </div>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Memilih pompa air yang tepat bergantung pada beberapa faktor seperti kapasitas, daya tahan, dan kebutuhan spesifik.... <span class="font-bold text-[#0756FF]">Baca Selengkapnya</span></p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                        {{ Str::limit($newest_blog->meta_description, 30, '...') }}
+                                        <a href="{{ url('/articles-and-events/' . $newest_blog->slug) }}" class="font-bold text-[#0756FF]">Baca Selengkapnya</a>
+                                    </p>
                             </div>
                         </div>
                         @endforeach
