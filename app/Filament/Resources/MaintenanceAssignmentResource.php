@@ -151,6 +151,10 @@ class MaintenanceAssignmentResource extends Resource
                         'active' => 'success',
                         'inactive' => 'warning',
                     })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'active' => 'Active',
+                        'inactive' => 'Non-Active',
+                    })
                     ->searchable(),
 
             ])

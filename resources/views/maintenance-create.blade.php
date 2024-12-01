@@ -1701,7 +1701,7 @@
                                                     <div class="border border-gray-300 my-2" id='root'></div>
                                                     <button 
                                                         type="button" 
-                                                        class="hidden text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
+                                                        class="text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
                                                         id="resetCanvas">
                                                         Reset
                                                     </button>
@@ -1716,7 +1716,7 @@
                                                     <div class="border border-gray-300 my-2" id='inputOperatorSignature'></div>
                                                     <button 
                                                         type="button" 
-                                                        class="hidden text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
+                                                        class="text-white inline-flex items-center bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800" 
                                                         id="resetCanvasOperatorSignature">
                                                         Reset
                                                     </button>
@@ -1960,17 +1960,14 @@
                 checkInputs();
 
                 resetCanvas.addEventListener("click", () => {
-                    resetCanvas.classList.add('hidden')
-                    getImage.classList.remove('hidden')
+
                     component.value = [];
                     technicianSignature.value = null;
                     checkInputs();
                 });
 
                 getImage.addEventListener("click", () => {
-                    console.log(component.getImage())
-                    resetCanvas.classList.remove('hidden')
-                    getImage.classList.add('hidden')
+
                     technicianSignature.value = component.getImage();
                     checkInputs();
                 });
@@ -1979,17 +1976,14 @@
 
 
                 resetCanvasOperatorSignature.addEventListener("click", () => {
-                    resetCanvasOperatorSignature.classList.add('hidden')
-                    getImageOperatorSignature.classList.remove('hidden')
+
                     componentOperatorSignature.value = [];
                     maintenanceOperatorSignature.value = null;
                     checkInputs();
                 });
 
                 getImageOperatorSignature.addEventListener("click", () => {
-                    console.log(componentOperatorSignature.getImage())
-                    resetCanvasOperatorSignature.classList.remove('hidden')
-                    getImageOperatorSignature.classList.add('hidden')
+
                     maintenanceOperatorSignature.value = componentOperatorSignature.getImage();
                     checkInputs();
                 });
