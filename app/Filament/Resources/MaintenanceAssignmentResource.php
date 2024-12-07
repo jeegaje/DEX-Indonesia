@@ -9,6 +9,7 @@ use App\Models\Pump;
 use App\Models\Role;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action as ActionsAction;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
@@ -58,6 +59,13 @@ class MaintenanceAssignmentResource extends Resource
                             ->options([
                                 'monthly' => 'Maintenance Bulanan',
                                 'full' => 'Full Maintenance',
+                            ])
+                            ->hidden(fn ($get) => $form->getRecord() === null),
+                            Select::make('status')
+                            ->label('Status')
+                            ->options([
+                                'active' => 'Aktif',
+                                'inactive' => 'Non Aktif',
                             ])
                             ->hidden(fn ($get) => $form->getRecord() === null),
 
@@ -137,6 +145,17 @@ class MaintenanceAssignmentResource extends Resource
                         'Teknisi' => 'danger',
                     })
                     ->searchable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'active' => 'success',
+                        'inactive' => 'warning',
+                    })
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'active' => 'Active',
+                        'inactive' => 'Non-Active',
+                    })
+                    ->searchable(),
 
             ])
             ->filters([
@@ -155,14 +174,43 @@ class MaintenanceAssignmentResource extends Resource
                                     ->hiddenLabel()
                                     ->default(function (MaintenanceAssignment $maintenanceAssignment) {
                                         return url('') . '/maintenance/create?token=' . $maintenanceAssignment->token . '&pump=' . Hash::make( $maintenanceAssignment->pump_id);
-                                    }),
-
-                                Forms\Components\Actions::make([
-                                    Forms\Components\Actions\Action::make('Copy Link')
-                                        ->action(function (Forms\Get $get, Forms\Set $set) {
-                                            $set('excerpt', str($get('content'))->words(45, end: ''));
-                                        })
-                                    ])->fullWidth()->extraAttributes(['id' => 'generated-link'])
+                                    })
+                                    ->suffixAction(
+                                        ActionsAction::make('copy')
+                                            ->icon('heroicon-s-clipboard')
+                                            ->action(function ($livewire, $state) {
+                                                $livewire->dispatch('copy-to-clipboard', text: $state);
+                                            })
+                                    )
+                                    ->extraAttributes([
+                                        'x-data' => '{
+                                            copyToClipboard(text) {
+                                                if (navigator.clipboard && navigator.clipboard.writeText) {
+                                                    navigator.clipboard.writeText(text).then(() => {
+                                                        $tooltip("Copied to clipboard", { timeout: 1500 });
+                                                    }).catch(() => {
+                                                        $tooltip("Failed to copy", { timeout: 1500 });
+                                                    });
+                                                } else {
+                                                    const textArea = document.createElement("textarea");
+                                                    textArea.value = text;
+                                                    textArea.style.position = "fixed";
+                                                    textArea.style.opacity = "0";
+                                                    document.body.appendChild(textArea);
+                                                    textArea.select();
+                                                    try {
+                                                        document.execCommand("copy");
+                                                        $tooltip("Copied to clipboard", { timeout: 1500 });
+                                                    } catch (err) {
+                                                        $tooltip("Failed to copy", { timeout: 1500 });
+                                                    }
+                                                    document.body.removeChild(textArea);
+                                                }
+                                            }
+                                        }',
+                                        'x-on:copy-to-clipboard.window' => 'copyToClipboard($event.detail.text)',
+                                    ]),
+                                
                                 ]);
                     })
                     ->modalSubmitAction(false)            //Remove Submit Button
@@ -171,7 +219,24 @@ class MaintenanceAssignmentResource extends Resource
                     ->color('primary') // Warna tombol, bisa diubah sesuai keinginan
                     ->icon('heroicon-o-check')
                     ->button(),
-                
+                Tables\Actions\ActionGroup::make([
+                    Action::make('change_maintenance_status_to_active')
+                        ->label('Aktifkan')
+                        ->color('success')
+                        ->visible(function (Model $record) {
+                            return $record->status == 'inactive';
+                        })
+                        ->action(fn(Model $record) => $record->update(['status' => 'active']))
+                        ->requiresConfirmation(),
+                    Action::make('change_maintenance_status_to_inactive')
+                        ->label('Non Aktifkan')
+                        ->color('danger')
+                        ->visible(function (Model $record) {
+                            return $record->status == 'active';
+                        })
+                        ->action(fn(Model $record) => $record->update(['status' => 'inactive']))
+                        ->requiresConfirmation(),
+                ]),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

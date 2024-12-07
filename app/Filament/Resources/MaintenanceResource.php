@@ -84,7 +84,8 @@ class MaintenanceResource extends Resource
                                                     ->schema([
                                                         Forms\Components\TextInput::make('name')
                                                             ->label('Tim Teknisi')
-                                                            ->readOnly(),
+                                                            ->readOnly()
+                                                            ->disabled(true),
                                                     ]),
                                                 Group::make()
                                                     ->relationship('pump')
@@ -92,17 +93,21 @@ class MaintenanceResource extends Resource
                                                     ->schema([
                                                         Forms\Components\TextInput::make('location')
                                                             ->label('Lokasi Pompa')
-                                                            ->readOnly(),
+                                                            ->readOnly()
+                                                            ->disabled(true),
                                                         Forms\Components\TextInput::make('serial_number')
                                                             ->label('Nomor Seri Pompa')
                                                             ->numeric()
-                                                            ->readOnly(),
+                                                            ->readOnly()
+                                                            ->disabled(true),
                                                         Forms\Components\TextInput::make('flow_and_head')
                                                             ->label('Flow and Head')
-                                                            ->readOnly(),
+                                                            ->readOnly()
+                                                            ->disabled(true),
                                                         Forms\Components\TextInput::make('unit')
                                                             ->label('No Unit Pompa')
-                                                            ->readOnly(),
+                                                            ->readOnly()
+                                                            ->disabled(true),
                                                     ])
                                             ]),
                                         Group::make()
@@ -110,23 +115,38 @@ class MaintenanceResource extends Resource
                                             ->schema([
                                                 Forms\Components\TextInput::make('number_of_inspection')
                                                     ->label('Pemeriksaan')
-                                                    ->readOnly(),
+                                                    ->readOnly()
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('running_hours_total')
-                                                    ->label('Running Hours Total'),
+                                                    ->label('Running Hours Total')
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\FileUpload::make('running_hours_total_image')
                                                     ->label('Running Hours Total Documentation')
                                                     ->directory('maintenance/data-pump')
                                                     ->image()
                                                     ->openable()
-                                                    ->downloadable(),
+                                                    ->downloadable()
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('running_hours_monthly')
-                                                    ->label('Running Hours Bulanan'),
+                                                    ->label('Running Hours Bulanan')
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\FileUpload::make('running_hours_monthly_image')
                                                     ->label('Running Hours Bulanan Documentation')
                                                     ->directory('maintenance/data-pump')
                                                     ->image()
                                                     ->openable()
-                                                    ->downloadable(),
+                                                    ->downloadable()
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                             ])
                                     ])
                             ]),
@@ -173,10 +193,16 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('indicator_light_rst_detail')
                                                     ->label('Lampu Indikator R.S.T Detail')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('voltage_balance')
                                                     ->label('Balance Voltase')
                                                     ->options([
@@ -185,26 +211,44 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('voltage_balance_detail')
                                                     ->label('Balance Voltase Detail')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('frequency')
                                                     ->numeric()
                                                     ->label('Frekuensi')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('v1')
                                                     ->numeric()
                                                     ->label('V1')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('v2')
                                                     ->numeric()
                                                     ->label('V2')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('v3')
                                                     ->numeric()
                                                     ->label('V3')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('power')
                                                     ->label('Power')
                                                     ->options([
@@ -212,7 +256,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                             ])
                                     ])
 
@@ -261,7 +308,10 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('cable_condition')
                                                     ->label('Koneksi Kabel')
                                                     ->options([
@@ -270,7 +320,10 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('connection_neatness')
                                                     ->label('Kerapian Koneksi')
                                                     ->options([
@@ -279,15 +332,24 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('humidity_inside_box')
                                                     ->numeric()
                                                     ->label('Kelembapan Dalam Box')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('temperature_inside_box')
                                                     ->numeric()
                                                     ->label('Suhu Dalam Box')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                             ])
                                     ])
                             ]),
@@ -334,7 +396,10 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('cable_condition')
                                                     ->label('Koneksi Kabel')
                                                     ->options([
@@ -343,7 +408,10 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('connection_neatness')
                                                     ->label('Kerapian Koneksi')
                                                     ->options([
@@ -352,15 +420,24 @@ class MaintenanceResource extends Resource
                                                     ])
                                                     ->inline()
                                                     ->inlineLabel(false)
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('humidity_inside_panel')
                                                     ->numeric()
                                                     ->label('Kelembapan Dalam Panel')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\TextInput::make('temperature_inside_panel')
                                                     ->numeric()
                                                     ->label('Suhu Dalam Panel')
-                                                    ->columnSpan(2),
+                                                    ->columnSpan(2)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
 
                                             ])
                                     ])
@@ -407,7 +484,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('pump_on_indicator')
                                                     ->label('Indikator Pump On')
                                                     ->options([
@@ -415,7 +495,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('cable_bolt_connection')
                                                     ->label('Koneksi Kabel Baut')
                                                     ->options([
@@ -423,7 +506,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('vsd_standby_indicator')
                                                     ->label('Indikator VSD Stand By')
                                                     ->options([
@@ -431,7 +517,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('drive_monitor')
                                                     ->label('Monitor Drive')
                                                     ->options([
@@ -439,7 +528,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('sensor_monitor')
                                                     ->label('Monitor Sensor')
                                                     ->options([
@@ -447,7 +539,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('power_meter_monitor')
                                                     ->label('Monitor Power Meter')
                                                     ->options([
@@ -455,7 +550,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('moa_selector')
                                                     ->label('Selektor MOA')
                                                     ->options([
@@ -463,7 +561,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('start_button')
                                                     ->label('Tombol Start')
                                                     ->options([
@@ -471,7 +572,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('stop_button')
                                                     ->label('Tombol Stop')
                                                     ->options([
@@ -479,7 +583,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('reset_button')
                                                     ->label('Tombol Reset')
                                                     ->options([
@@ -487,7 +594,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('emergency_button')
                                                     ->label('Tombol Emergency')
                                                     ->options([
@@ -495,7 +605,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('exhaust_fan')
                                                     ->label('Kipas Exhaust')
                                                     ->options([
@@ -503,7 +616,10 @@ class MaintenanceResource extends Resource
                                                         'not_functional' => 'Tidak Fungsi',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                             ])
                                     ])
                             ]),
@@ -546,391 +662,625 @@ class MaintenanceResource extends Resource
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_kw')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_kw_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_kw')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_kw_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_kw')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_kw_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Amper')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_amper')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_amper_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_amper')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_amper_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_amper')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_amper_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('RPM')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_rpm')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_rpm_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_rpm')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_rpm_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_rpm')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_rpm_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Torsi')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_torsi')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_torsi_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_torsi')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_torsi_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_torsi')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_torsi_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Winding')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_winding_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_winding_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_winding_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_winding_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_winding_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_winding_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Pump humidity')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_pump_humidity')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_pump_humidity_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_pump_humidity')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_pump_humidity_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_pump_humidity')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_pump_humidity_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Bearing')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_bearing_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_bearing_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_bearing_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_bearing_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_bearing_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_bearing_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Kabel 1')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_cable_1_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_cable_1_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_cable_1_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_cable_1_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_cable_1_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_cable_1_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Kabel 2')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_cable_2_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_cable_2_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_cable_2_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_cable_2_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_cable_2_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_cable_2_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Kabel 3')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_cable_3_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_cable_3_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_cable_3_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_cable_3_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_cable_3_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_cable_3_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Vibrasi')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_vibration')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_vibration_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_vibration')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_vibration_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_vibration')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_vibration_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suara (db)')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_sound')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_sound_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_sound')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_sound_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_sound')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_sound_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Suhu Terminal')
                                                     ->schema([
                                                         Forms\Components\TextInput::make('40_hz_terminal_temperature')
                                                             ->numeric()
-                                                            ->label('40 HZ'),
+                                                            ->label('40 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('40_hz_terminal_temperature_image_path')
                                                             ->label('40 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('45_hz_terminal_temperature')
                                                             ->numeric()
-                                                            ->label('45 HZ'),
+                                                            ->label('45 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('45_hz_terminal_temperature_image_path')
                                                             ->label('45 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\TextInput::make('50_hz_terminal_temperature')
                                                             ->numeric()
-                                                            ->label('50 HZ'),
+                                                            ->label('50 HZ')
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\FileUpload::make('50_hz_terminal_temperature_image_path')
                                                             ->label('50 HZ Dokumentasi')
                                                             ->directory('maintenance/electro-mechanical')
                                                             ->image()
                                                             ->openable()
-                                                            ->downloadable(),
+                                                            ->downloadable()
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                             ])
                                     ])
@@ -972,14 +1322,19 @@ class MaintenanceResource extends Resource
                                             ->schema([
                                                 Forms\Components\TextInput::make('water_ph_value_condition')
                                                     ->label('Kondisi Nilai PH Air')
-                                                    ->readOnly(),
-
+                                                    ->readOnly()
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\FileUpload::make('water_ph_value_condition_image_path')
                                                     ->label('Kondisi Nilai PH Air Dokumentasi')
                                                     ->directory('maintenance/pipe-column-water-output')
                                                     ->image()
                                                     ->openable()
-                                                    ->downloadable(),
+                                                    ->downloadable()
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('column_pipe_condition')
                                                     ->label('Kondisi Kolom Pipa')
                                                     ->options([
@@ -987,7 +1342,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('output_pipe_condition')
                                                     ->label('Kondisi Pipa Output')
                                                     ->options([
@@ -995,7 +1353,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('valve_condition')
                                                     ->label('Kondisi Valve (Ops)')
                                                     ->options([
@@ -1003,7 +1364,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('flap_condition')
                                                     ->label('Kondisi Flap (Ops)')
                                                     ->options([
@@ -1011,7 +1375,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                                 Forms\Components\Radio::make('water_output_condition')
                                                     ->label('Volume Output Air')
                                                     ->options([
@@ -1019,7 +1386,10 @@ class MaintenanceResource extends Resource
                                                         'abnormal' => 'Tidak Normal',
                                                     ])
                                                     ->inline()
-                                                    ->inlineLabel(false),
+                                                    ->inlineLabel(false)
+                                                    ->disabled(function (Model $record) {
+                                                        return $record->status == 'approved';
+                                                    }),
                                             ])
                                     ])
                             ]),
@@ -1068,7 +1438,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_fault_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1076,7 +1449,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_fault_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1084,7 +1460,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_fault_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1092,7 +1471,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Low Water')
                                                     ->schema([
@@ -1103,7 +1485,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('low_water_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1111,7 +1496,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('low_water_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1119,7 +1507,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('low_water_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1127,7 +1518,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Voltage Fuult')
                                                     ->schema([
@@ -1138,7 +1532,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('voltage_fault_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1146,7 +1543,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('voltage_fault_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1154,7 +1554,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('voltage_fault_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1162,7 +1565,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('VSD Vault')
                                                     ->schema([
@@ -1173,7 +1579,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('vsd_vault_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1181,7 +1590,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('vsd_vault_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1189,7 +1601,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('vsd_vault_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1197,7 +1612,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Trouble Alarm')
                                                     ->schema([
@@ -1208,7 +1626,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('trouble_alarm_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1216,7 +1637,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('trouble_alarm_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1224,7 +1648,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('trouble_alarm_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1232,7 +1659,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                                 Fieldset::make('Pump Trip')
                                                     ->schema([
@@ -1243,7 +1673,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_trip_wlc_sensor')
                                                             ->label('Sensor WLC')
                                                             ->options([
@@ -1251,7 +1684,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_trip_voltage_sensor')
                                                             ->label('Sensor Voltase')
                                                             ->options([
@@ -1259,7 +1695,10 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                         Forms\Components\Radio::make('pump_trip_vsd_sensor')
                                                             ->label('Sensor VSD')
                                                             ->options([
@@ -1267,81 +1706,12 @@ class MaintenanceResource extends Resource
                                                                 'abnormal' => 'Tidak Normal',
                                                             ])
                                                             ->inline()
-                                                            ->inlineLabel(false),
+                                                            ->inlineLabel(false)
+                                                            ->disabled(function (Model $record) {
+                                                                return $record->status == 'approved';
+                                                            }),
                                                     ]),
                                             ])
-                                    ])
-                            ]),
-                        Tab::make('Megger')
-                            ->schema([
-                                Section::make('Megger')
-                                    ->headerActions([
-                                        Action::make('megger_waiting_approval_status')
-                                            ->label('Belum Approve')
-                                            ->color('danger')
-                                            ->size(ActionSize::Large)
-                                            ->badge()
-                                            ->disabled(true)
-                                            ->visible(function (Model $record) {
-                                                return $record->maintenanceMegger->status == 'waiting_approval';
-                                            }),
-                                        Action::make('megger_approved_status')
-                                            ->label('Approve')
-                                            ->color('success')
-                                            ->size(ActionSize::Large)
-                                            ->badge()
-                                            ->disabled(true)
-                                            ->visible(function (Model $record) {
-                                                return $record->maintenanceMegger->status == 'approved';
-                                            }),
-                                        Action::make('megger_approve')
-                                            ->label('Approve')
-                                            ->color('success')
-                                            ->visible(function (Model $record) {
-                                                return $record->maintenanceMegger->status == 'waiting_approval';
-                                            })
-                                            ->action(fn(Model $record) => $record->maintenanceMegger->update(['status' => 'approved', 'approved_by' => auth()->user()->id]))
-                                            ->requiresConfirmation(),
-                                    ])
-                                    ->schema([
-                                        Fieldset::make('Data Pompa')
-                                            ->schema([
-                                                Group::make()
-                                                    ->relationship('user')
-                                                    ->columnSpan(2)
-                                                    ->schema([
-                                                        Forms\Components\TextInput::make('name')
-                                                            ->label('Tim Teknisi')
-                                                            ->readOnly(),
-                                                    ]),
-                                                Group::make()
-                                                    ->relationship('pump')
-                                                    ->columnSpan(2)
-                                                    ->schema([
-                                                        Forms\Components\TextInput::make('location')
-                                                            ->label('Lokasi Pompa')
-                                                            ->readOnly(),
-                                                        Forms\Components\TextInput::make('serial_number')
-                                                            ->label('Nomor Seri Pompa')
-                                                            ->numeric()
-                                                            ->readOnly(),
-                                                        Forms\Components\TextInput::make('unit')
-                                                            ->label('No Unit Pompa')
-                                                            ->readOnly(),
-                                                    ])
-                                            ]),
-                                        Fieldset::make('Megger')
-                                            ->relationship('maintenanceMegger')
-                                            ->schema([
-                                                Forms\Components\DatePicker::make('date')
-                                                    ->label('Tanggal')
-                                                    ->format('d/m/Y'),
-                                                Forms\Components\TextInput::make('running_hours')
-                                                    ->label('Running Hours')
-                                                    ->numeric(),
-
-                                            ])
-
                                     ])
                             ]),
                         Tab::make('Insulasi')
@@ -1380,68 +1750,123 @@ class MaintenanceResource extends Resource
                                     ->relationship('maintenanceInsulation')
                                     ->schema([
                                         Forms\Components\TextInput::make('u1_pe')
-                                            ->label('U1 - PE'),
+                                            ->label('U1 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('u1_pe_image_path')
                                             ->label('Dokumentasi U1 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('v1_pe')
-                                            ->label('V1 - PE'),
+                                            ->label('V1 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('v1_pe_image_path')
                                             ->label('Dokumentasi V1 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('w1_pe')
-                                            ->label('W1 - PE'),
+                                            ->label('W1 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('w1_pe_image_path')
                                             ->label('Dokumentasi W1 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('u2_pe')
-                                            ->label('U2 - PE'),
+                                            ->label('U2 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('u2_pe_image_path')
                                             ->label('Dokumentasi U2 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('u2_pe')
-                                            ->label('U2 - PE'),
+                                            ->label('U2 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('u2_pe_image_path')
                                             ->label('Dokumentasi U2 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('w2_pe')
-                                            ->label('W2 - PE'),
+                                            ->label('W2 - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('w2_pe_image_path')
                                             ->label('Dokumentasi W2 - PE')
                                             ->directory('maintenance/insulation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('u1_v2')
-                                            ->label('U1 - V2'),
+                                            ->label('U1 - V2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('u1_w2')
-                                            ->label('U1 - W2'),
+                                            ->label('U1 - W2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('v1_u2')
-                                            ->label('U1 - U2'),
+                                            ->label('U1 - U2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('v1_w2')
-                                            ->label('V1 - W2'),
+                                            ->label('V1 - W2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('w1_u2')
-                                            ->label('W1 - U2'),
+                                            ->label('W1 - U2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('w1_v2')
-                                            ->label('W1 - V2'),
+                                            ->label('W1 - V2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                     ])
                                 ])
-                            ]),
+                            ])
+                            ->visible(fn (Model $record) => $record->maintenance_type == 'full'),
                         Tab::make('Resistensi')
                             ->schema([
                                 Section::make('resistensi')
@@ -1478,40 +1903,65 @@ class MaintenanceResource extends Resource
                                     ->relationship('maintenanceResistance')
                                     ->schema([
                                         Forms\Components\TextInput::make('pe_pe')
-                                            ->label('PE - PE'),
+                                            ->label('PE - PE')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('pe_pe_image_path')
                                             ->label('Dokumentasi PE - PE')
                                             ->directory('maintenance/resistance')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('u1_u2')
-                                            ->label('U1 - U2'),
+                                            ->label('U1 - U2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('u1_u2_image_path')
                                             ->label('Dokumentasi U1 - U2')
                                             ->directory('maintenance/resistance')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('v1_v2')
-                                            ->label('V1 - V2'),
+                                            ->label('V1 - V2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('v1_v2_image_path')
                                             ->label('Dokumentasi V1 - V2')
                                             ->directory('maintenance/resistance')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('w1_w2')
-                                            ->label('W1 - W2'),
+                                            ->label('W1 - W2')
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('w1_w2_image_path')
                                             ->label('Dokumentasi W1 - W2')
                                             ->directory('maintenance/resistance')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                     ])
                                 ])
-                            ]),
+                            ])
+                            ->visible(fn (Model $record) => $record->maintenance_type == 'full'),
                         Tab::make('Kondisi Pompa')
                             ->schema([
                                 Section::make('Kondisi Pompa')
@@ -1555,10 +2005,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('pump_body_note')
                                             ->label('Catatan Bodi Pompa')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('wearing_ring')
                                             ->label('Wearing Ring')
                                             ->options([
@@ -1567,10 +2023,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('wearing_ring_note')
                                             ->label('Catatan Wearing Ring')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('pump_bolt')
                                             ->label('Baut Pompa')
                                             ->options([
@@ -1579,10 +2041,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('pump_bolt_note')
                                             ->label('Catatan Baut Pompa')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('column_pipe_bolt')
                                             ->label('Baut Column Pipa')
                                             ->options([
@@ -1591,10 +2059,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('column_pipe_bolt_note')
                                             ->label('Catatan Baut Column Pipa')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('impeller')
                                             ->label('Impeller')
                                             ->options([
@@ -1603,10 +2077,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('impeller_note')
                                             ->label('Catatan Impeller')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('cable')
                                             ->label('Kabel')
                                             ->options([
@@ -1615,10 +2095,16 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('cable_note')
                                             ->label('Catatan Kabel')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\Radio::make('pump_condition')
                                             ->label('Kondisi Pompa')
                                             ->options([
@@ -1627,13 +2113,20 @@ class MaintenanceResource extends Resource
                                             ])
                                             ->inline()
                                             ->inlineLabel(false)
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\TextInput::make('pump_condition_note')
                                             ->label('Catatan Kondisi Pompa')
-                                            ->columnSpan(2),
+                                            ->columnSpan(2)
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                     ])
                                 ])
-                            ]),
+                            ])
+                            ->visible(fn (Model $record) => $record->maintenance_type == 'full'),
                         Tab::make('Dokumentasi')
                             ->schema([
                                 Section::make('Dokumentasi')
@@ -1674,85 +2167,127 @@ class MaintenanceResource extends Resource
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('cleaning_panel_with_cloth')
                                             ->label('Membersihkan Panel Dengan Kain')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('cleaning_panel_with_brush')
                                             ->label('Membersihkan Panel Dengan Kuas')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('cleaning_panel_with_vacuum')
                                             ->label('Membersihkan Panel Dengan Vacuum')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('panel_condition_after_cleaning')
                                             ->label('Kondisi Panel Setelah Dibersihkan')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('junction_box_after_cleaning')
                                             ->label('Junction Box Setelah Dibersihkan')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('water_level')
                                             ->label('Ketinggian Air')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('pump_cleaning')
                                             ->label('Pump Cleaning')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('lifting_pump')
                                             ->label('Mengangkat Pompa')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('cleaning_pump_body')
                                             ->label('Membersihkan Bodi Pompa')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('polishing_wearing_ring')
                                             ->label('Memoles Wearing Ring')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('replacing_pump_oil')
                                             ->label('Menganti Oli Pompa')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('tightening_pump_bolts')
                                             ->label('Mengencangkan Baut-Baut Pompa')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                         Forms\Components\FileUpload::make('cleaning_pump_impeller')
                                             ->label('Membersihkan Impeller Pompa')
                                             ->directory('maintenance/documentation')
                                             ->image()
                                             ->openable()
-                                            ->downloadable(),
+                                            ->downloadable()
+                                            ->disabled(function (Model $record) {
+                                                return $record->status == 'approved';
+                                            }),
                                     ])
                                     ])
                                 ]),
@@ -1813,18 +2348,12 @@ class MaintenanceResource extends Resource
                     Tables\Actions\Action::make('signature')
                         ->label('Tanda Tangan Teknisi')
                         ->modalHeading('Tanda Tangan Teknisi')
-                        ->form(fn (Model $record) => [
-                            Forms\Components\FileUpload::make('signature')
-                                ->label(false)
-                                ->default($record->signature)
-                                ->directory('maintenance/documentation')
-                                ->image()
-                                ->openable()
-                                ->downloadable()
-                                ->deletable(false)
-                                ->disabled()
-                                ->placeholder('Tidak ada tanda tangan teknisi'),
-                        ])
+                        ->modalContent(function (Model $record) {
+                            return view('filament.signature-table', [
+                                'record' => $record,
+                                'data' => $record, // Ambil data yang akan ditampilkan di tabel
+                            ]);
+                        })
                         ->modalSubmitAction(false)            //Remove Submit Button
                         ->modalCancelAction(false),
                     Tables\Actions\Action::make('generateReport')

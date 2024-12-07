@@ -20,9 +20,8 @@ use App\Models\MaintenanceSensorTest;
 use Carbon\Carbon;
 use Illuminate\Http\File;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
-use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -47,12 +46,18 @@ class MaintenanceController extends Controller
         $fileContent = Storage::get($filePath);
         $mimeType = Storage::mimeType($filePath);
         $base64 = base64_encode($fileContent);
+
+        if ($mimeType == null && $base64 == null) {
+            return null;
+        }
         
         return 'data:' . $mimeType . ';base64,' . $base64;
     }
     // Method untuk menampilkan form create
     public function create(Request $request)
     {
+        $created = $request->query('status');
+
         // Ambil token dari query string
         $token = $request->query('token');
 
@@ -66,7 +71,15 @@ class MaintenanceController extends Controller
             abort(404);
         }
 
-        $pumps = MaintenanceAssignment::with('pump')->where('user_id', $pump->user_id)->get();
+        $pumps = MaintenanceAssignment::with('pump')->where('user_id', $pump->user_id)->where('status', 'active')->get();
+
+        if ($created == 'success') {
+            return view('maintenance-created', compact('pumps'));
+        }
+
+        if ($pump->status == 'inactive') {
+            abort(404);
+        }
 
         $total_of_inspection = Maintenance::where('pump_id', $pump->pump->id)->count() + 1;
 
@@ -76,13 +89,17 @@ class MaintenanceController extends Controller
 
         $data_technician = $pump->user;
 
-        return view('welcome', compact('token', 'pumps', 'data_pump', 'data_technician', 'total_of_inspection', 'maintenance_type'));
+        return view('maintenance-create', compact('token', 'pumps', 'data_pump', 'data_technician', 'total_of_inspection', 'maintenance_type'));
 
     }
 
-    public function generateReport(Request $request, $id)
+    public function created(Request $request)
     {
+        return view('maintenance-created');
+    }
 
+    public function previewReport(Request $request, $id)
+    {
         $maintenance = Maintenance::with([
             'maintenanceAssignment',
             'maintenancePumpData',
@@ -186,27 +203,11 @@ class MaintenanceController extends Controller
             $maintenanceDocumentation[$key] = self::generateBase64('public/' . $value);
         };
 
-        // dd($maintenanceDocumentation);
-    
-        $html = view('company-profile.pdf', [
+        return view('company-profile.pdf',  [
             'maintenance' => $maintenance,
             'dataCurve' => $dataCurve,
             'maintenanceDocumentation' => $maintenanceDocumentation
-        ])->render();
-
-        $pdf = Browsershot::html($html)
-            ->showBackground()
-            ->paperSize(210, 330, 'mm')
-    
-            ->pdf();
-            // ->save('pdf-' . Str::random(10) . '.pdf');
-    
-    
-        return new Response($pdf, 200, [
-            'Content-Type' => 'application/pdf',
-            'Content-Dispotition' => 'inline; filenames="report.pdf'
         ]);
-    
     }
 
     public function testUpload(Request $request) {
@@ -225,9 +226,11 @@ class MaintenanceController extends Controller
             if ($request->filled('maintenance_note')) {
                 $maintenance->technician_note = $request->maintenance_note;
             }
-            if ($request->filled('maintenance_signature')) {
-                $fileLocation_maintenance_signature = $this->fileRelocated($request->maintenance_signature, 'maintenance/signature');
-                $maintenance->signature = $fileLocation_maintenance_signature;
+            if ($request->filled('technician_signature')) {
+                $maintenance->technician_signature = $request->technician_signature;
+            }
+            if ($request->filled('operator_signature')) {
+                $maintenance->operator_signature = $request->operator_signature;
             }
             $maintenance->save();
 
@@ -1250,11 +1253,12 @@ class MaintenanceController extends Controller
             
             $maintenance_documentation->save();
 
-
-
+            $maintenance_assignment_update = MaintenanceAssignment::find($maintenance_assignment->id); // Ganti $id dengan ID pengguna yang ingin diperbarui
+            $maintenance_assignment_update->status = 'inactive';
+            $maintenance_assignment_update->save();
 
     
-                return back()->with('success', 'File berhasil diunggah.');
+            return redirect()->to(url('') .  '/maintenance/create?token=' . $maintenance_assignment->token . '&pump=' . Hash::make( $maintenance_assignment ->pump_id) . '&status=success');
 
         } catch (\Exception $e) {
             // Tangkap error dan kirim pesan ke session

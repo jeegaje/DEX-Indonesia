@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('company-profile.template')
 
-        <title>Laravel</title>
-
-        @vite(['resources/css/app.css','resources/js/app.js'])
-        @livewireStyles
-
-    </head>
-    <body>
-        <livewire:company-profile.navbar />
+@section('content')
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="flex gap-5">
@@ -41,7 +30,7 @@
     linear-gradient(to bottom, rgba(170, 170, 170, 0.52), rgba(0, 0, 0, 0.73)),
     url('{{ asset('storage/' . $newest_blog->banner) }}'); background-repeat: no-repeat; background-size: cover; background-position: center;">
                             <div class="flex flex-col text-white">
-                                <a href="#">
+                                <a href="{{ route('article.show', ['slug' => $newest_blog->slug]) }}">
                                     <h5 class="mb-2 text-xl font-bold tracking-tight dark:text-white">{{ $newest_blog->title }}</h5>
                                 </a>
                                 <div class="flex items-center gap-2">
@@ -58,7 +47,7 @@
                     </div>
                 </div>
                 <div class="flex justify-between border-b border-gray-200 dark:border-gray-700 my-10">
-                    <h1 class="text-2xl font-bold mb-5">Artikel Dex</h1>
+                    <h1 class="text-2xl font-bold mb-5">Artikel DEX</h1>
                     <button type="button" class="text-[#0756FF] border-1 border-[#0756FF]">Lihat Semua</button>
                 </div>
                 <div class="grid md:grid-cols-3 grid-cols-1 gap-5 items-start">
@@ -77,14 +66,17 @@
                                       </svg>
                                     <span>{{ date('j F Y', strtotime($newest_blog->published_at)) }}</span>
                                     </div>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Memilih pompa air yang tepat bergantung pada beberapa faktor seperti kapasitas, daya tahan, dan kebutuhan spesifik.... <span class="font-bold text-[#0756FF]">Baca Selengkapnya</span></p>
+                                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                                        {{ Str::limit($newest_blog->meta_description, 30, '...') }}
+                                        <a href="{{ url('/articles-and-events/' . $newest_blog->slug) }}" class="font-bold text-[#0756FF]">Baca Selengkapnya</a>
+                                    </p>
                             </div>
                         </div>
                         @endforeach
                     </div>
                     <div class="">
                         <div class="rounded-lg bg-blue-950 py-16 px-10 text-center">
-                            <h3 class="text-white text-xl font-bold">Dex Activity</h3>
+                            <h3 class="text-white text-xl font-bold">DEX Activity</h3>
                             <p class="text-white mb-5">Lihat kegiatan yang kami lakukan melalui kanal media kami lainnya</p>
                             <div class="flex justify-center items-center gap-5">
                                 <a href="https://www.instagram.com/dexpumpid/" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -136,7 +128,4 @@
 
             </div>
         </section>
-        <livewire:company-profile.footer :company_profile="$company_profile" />
-    </body>
-    @livewireScripts
-</html>
+@endsection
