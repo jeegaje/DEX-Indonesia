@@ -24,7 +24,7 @@ class GaleryDexResource extends Resource
 
     protected static ?string $cluster = MediaDocument::class;
 
-    protected static ?string $navigationLabel = 'Galery Dex';
+    protected static ?string $navigationLabel = 'Galery DEX';
 
     protected static SubNavigationPosition $subNavigationPosition = SubNavigationPosition::Top;
     
@@ -41,7 +41,7 @@ class GaleryDexResource extends Resource
                     'sm' => 2,
                 ]),
             Forms\Components\FileUpload::make('path')
-                ->label('Galery Dex')
+                ->label('Galery DEX')
                 ->directory('media-document/galery-dex')
                 ->columnSpan([
                     'sm' => 2,
@@ -54,7 +54,17 @@ class GaleryDexResource extends Resource
                     'video' => 'Video' 
                 ])
                 ->helperText('The input type must match the uploaded file')
+                ->reactive()
+                ->afterStateUpdated(fn ($state, callable $set) => $set('is_video', $state === 'video'))
                 ->searchable(),
+            Forms\Components\FileUpload::make('thumbnail_path')
+                ->label('Thumbnail')
+                ->directory('media-document/galery-dex')
+                ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/jpg'])
+                ->columnSpan([
+                    'sm' => 2,
+                ])
+                ->visible(fn ($get) => $get('is_video')),
             Forms\Components\TextInput::make('caption')
                 ->label('Caption')
                 ->columnSpan([
@@ -106,6 +116,6 @@ class GaleryDexResource extends Resource
 
     public static function getBreadcrumb(): string
     {
-        return 'Galery Dex';
+        return 'Galery DEX';
     }
 }

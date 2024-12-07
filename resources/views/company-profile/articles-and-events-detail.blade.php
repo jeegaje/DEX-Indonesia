@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('company-profile.template')
 
-        <title>Laravel</title>
+@section('meta')
+<meta name="description" content="{{ $blog->meta_description }}">
+<meta name="keywords" content="{{ $blog->meta_keywords }}">
+@endsection
 
-        @vite(['resources/css/app.css','resources/js/app.js'])
-        @livewireStyles
-
-    </head>
-    <body>
-        <livewire:company-profile.navbar />
+@section('content')
         <section>
             <div class="max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div class="grid md:grid-cols-3 grid-cols-1 gap-5 items-start">
@@ -34,7 +28,7 @@
                     </div>
                     <div class="">
                         <div class="rounded-lg bg-blue-950 py-16 px-10 text-center">
-                            <h3 class="text-white text-xl font-bold">Dex Activity</h3>
+                            <h3 class="text-white text-xl font-bold">DEX Activity</h3>
                             <p class="text-white mb-5">Lihat kegiatan yang kami lakukan melalui kanal media kami lainnya</p>
                             <div class="flex flex-col items-center gap-5">
                                 <button class="px-5 py-2 w-32 rounded-md bg-white">Youtube</button>
@@ -83,7 +77,4 @@
 
             </div>
         </section>
-        <livewire:company-profile.footer :company_profile="$company_profile" />
-    </body>
-    @livewireScripts
-</html>
+@endsection

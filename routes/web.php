@@ -29,6 +29,8 @@ use Spatie\LaravelPdf\Facades\Pdf;
 
 
 Route::get('/maintenance/create', [MaintenanceController::class, 'create'])->name('maintenance.create');
+Route::get('/maintenance/created', [MaintenanceController::class, 'created'])->name('maintenance.created');
+
 Route::post('/maintenance/store', [MaintenanceController::class, 'store'])->name('maintenance.store');
 
 Route::post('/maintenance/store/upload', [MaintenanceController::class, 'testUpload'])->name('maintenance.upload');
@@ -124,13 +126,6 @@ Route::get('/send-to-gmail', function (Request $request) {
     return redirect()->away($gmailUrl);
 })->name('sendToGmail');
 
-Route::get('/pdf-web', function () {
-    return view('company-profile.pdf',  [
-        'invoiceNumber' => '1234',
-        'customerName' => 'Grumpy Cat',
-    ]);
-});
-
 Route::get('/download', function() {
 
     $filename = request()->query('path');
@@ -144,6 +139,6 @@ Route::get('/download', function() {
 })->name('file.download');
 
 
-Route::get('/maintenance/generate-report/{id}', [MaintenanceController::class, 'generateReport'])->name('generateReport');
+Route::get('/maintenance/generate-report/{id}', [MaintenanceController::class, 'previewReport'])->name('generateReport');
 
 Route::post('/maintenance/uploads/process', [ControllersFileUploadController::class, 'process'])->name('uploads.process');
